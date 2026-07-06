@@ -28,50 +28,45 @@ document.querySelectorAll('.nav-list a').forEach(link => {
 });
 
 // === SCROLL REVEAL ===
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0 });
+const revealElements = [];
 
-function observeReveal(el) {
-  revealObserver.observe(el);
-  // Force immediate check: 50ms after page settles
-  requestAnimationFrame(() => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      el.classList.add('visible');
-      revealObserver.unobserve(el);
-    }
-  });
+function trackReveal(el, delay) {
+  if (delay) el.style.transitionDelay = delay;
+  revealElements.push(el);
 }
 
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-  observeReveal(el);
-});
-
-// Apply reveal classes to cards
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => trackReveal(el));
 document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card').forEach((el, i) => {
   el.classList.add('reveal');
-  el.style.transitionDelay = `${i * 0.1}s`;
-  observeReveal(el);
+  trackReveal(el, `${i * 0.1}s`);
 });
-
-document.querySelectorAll('.about-grid .about-content').forEach(el => { el.classList.add('reveal-left'); observeReveal(el); });
-document.querySelectorAll('.about-grid .about-image-wrap').forEach(el => { el.classList.add('reveal-right'); observeReveal(el); });
-document.querySelectorAll('.section-header').forEach(el => { el.classList.add('reveal'); observeReveal(el); });
+document.querySelectorAll('.about-grid .about-content').forEach(el => { el.classList.add('reveal-left'); trackReveal(el); });
+document.querySelectorAll('.about-grid .about-image-wrap').forEach(el => { el.classList.add('reveal-right'); trackReveal(el); });
+document.querySelectorAll('.section-header').forEach(el => { el.classList.add('reveal'); trackReveal(el); });
 document.querySelectorAll('.parents-card').forEach((el, i) => {
   el.classList.add('reveal');
-  el.style.transitionDelay = `${i * 0.15}s`;
-  observeReveal(el);
+  trackReveal(el, `${i * 0.15}s`);
 });
 document.querySelectorAll('.contact-grid > div').forEach((el, i) => {
   el.classList.add('reveal');
-  el.style.transitionDelay = `${i * 0.15}s`;
-  observeReveal(el);
+  trackReveal(el, `${i * 0.15}s`);
+});
+
+// Immediately reveal elements in viewport, observe the rest
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    entry.target.classList.add('visible');
+    revealObserver.unobserve(entry.target);
+  });
+}, { threshold: 0 });
+
+revealElements.forEach(el => {
+  const rect = el.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    el.classList.remove('reveal', 'reveal-left', 'reveal-right', 'reveal-scale');
+  } else {
+    revealObserver.observe(el);
+  }
 });
 
 // === COUNTER ANIMATION ===
