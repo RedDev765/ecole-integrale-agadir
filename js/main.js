@@ -32,33 +32,46 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+}, { threshold: 0 });
+
+function observeReveal(el) {
+  revealObserver.observe(el);
+  // Force immediate check: 50ms after page settles
+  requestAnimationFrame(() => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('visible');
+      revealObserver.unobserve(el);
+    }
+  });
+}
 
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-  revealObserver.observe(el);
+  observeReveal(el);
 });
 
 // Apply reveal classes to cards
 document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card').forEach((el, i) => {
   el.classList.add('reveal');
   el.style.transitionDelay = `${i * 0.1}s`;
-  revealObserver.observe(el);
+  observeReveal(el);
 });
 
-document.querySelectorAll('.about-grid .about-content').forEach(el => el.classList.add('reveal-left'));
-document.querySelectorAll('.about-grid .about-image-wrap').forEach(el => el.classList.add('reveal-right'));
-document.querySelectorAll('.section-header').forEach(el => el.classList.add('reveal'));
+document.querySelectorAll('.about-grid .about-content').forEach(el => { el.classList.add('reveal-left'); observeReveal(el); });
+document.querySelectorAll('.about-grid .about-image-wrap').forEach(el => { el.classList.add('reveal-right'); observeReveal(el); });
+document.querySelectorAll('.section-header').forEach(el => { el.classList.add('reveal'); observeReveal(el); });
 document.querySelectorAll('.parents-card').forEach((el, i) => {
   el.classList.add('reveal');
   el.style.transitionDelay = `${i * 0.15}s`;
-  revealObserver.observe(el);
+  observeReveal(el);
 });
 document.querySelectorAll('.contact-grid > div').forEach((el, i) => {
   el.classList.add('reveal');
   el.style.transitionDelay = `${i * 0.15}s`;
-  revealObserver.observe(el);
+  observeReveal(el);
 });
 
 // === COUNTER ANIMATION ===
