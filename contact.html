@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contactez l'École Intégrale Campus Agadir Bay - Téléphone, email, adresse et formulaire de contact">
+  <title>Contact - École Intégrale Campus Agadir Bay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="École Intégrale Campus Agadir Bay" onerror="this.style.display='none'">
+      <div>
+        <strong>Intégrale Campus</strong>
+        <span>Agadir Bay</span>
+      </div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="about.html">Présentation</a></li>
+        <li><a href="programs.html">Programmes</a></li>
+        <li><a href="team.html">Équipe</a></li>
+        <li><a href="blog.html">Actualités</a></li>
+        <li><a href="parents.html">Parents</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Contactez-nous</h1>
+    <p>Nous sommes à votre écoute pour toute information ou demande de rendez-vous</p>
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a> / <span>Contact</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Nos coordonnées</h3>
+
+        <div class="contact-detail">
+          <div class="icon" style="font-style: normal;">📍</div>
+          <div>
+            <h4>Adresse</h4>
+            <p>CC27+3G, Agadir 80000</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon" style="font-style: normal;">📞</div>
+          <div>
+            <h4>Téléphone</h4>
+            <p>0528 39 08 38</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon" style="font-style: normal;">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <p>ecole.integrale.agadir@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon" style="font-style: normal;">🕐</div>
+          <div>
+            <h4>Horaires d'ouverture</h4>
+            <p>Lundi - Vendredi : 8h00 - 17h00</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 40px;">Suivez-nous</h3>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook" style="font-style: normal; font-weight: 700;">f</a>
+          <a href="#" class="social-link" aria-label="Instagram" style="font-style: normal;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </a>
+        </div>
+
+        <div style="margin-top: 32px; padding: 20px; background: var(--accent); border-radius: var(--radius);">
+          <p style="font-size: 0.9rem; color: var(--text-gray);">
+            <strong style="color: var(--primary);">Vous souhaitez inscrire votre enfant ?</strong><br>
+            Contactez-nous pour planifier une visite de l'établissement et retirer un dossier d'inscription. Notre équipe se fera un plaisir de vous accompagner.
+          </p>
+          <a href="tel:0528390838" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">📞 Appeler le 0528 39 08 38</a>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form" action="https://formspree.io/f/ecole.integrale.agadir@gmail.com" method="POST">
+          <h3 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 24px;">Envoyez-nous un message</h3>
+
+          <div class="form-group">
+            <label for="name">Nom complet *</label>
+            <input type="text" id="name" name="name" required placeholder="Votre nom et prénom">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Sujet *</label>
+            <select id="subject" name="subject" required>
+              <option value="">Sélectionnez un sujet</option>
+              <option value="inscription">Demande d'inscription</option>
+              <option value="visite">Demande de visite</option>
+              <option value="information">Demande d'information</option>
+              <option value="reclamation">Réclamation</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Écrivez votre message ici..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Envoyer le message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <strong class="logo-text">Intégrale Campus Agadir Bay</strong>
+        <p>Une éducation d'excellence de la Maternelle au Lycée, dans un cadre trilingue et international.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">f</a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Liens rapides</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Présentation</a></li>
+          <li><a href="programs.html">Programmes</a></li>
+          <li><a href="team.html">Équipe</a></li>
+          <li><a href="blog.html">Actualités</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <ul class="footer-links">
+          <li><a href="parents.html">Espace Parents</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>CC27+3G, Agadir 80000</li>
+          <li>0528 39 08 38</li>
+          <li>ecole.integrale.agadir@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 École Intégrale Campus Agadir Bay. Tous droits réservés.
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
