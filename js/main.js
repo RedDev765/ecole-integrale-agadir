@@ -63,7 +63,8 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach(el => {
   const rect = el.getBoundingClientRect();
   if (rect.top < window.innerHeight && rect.bottom > 0) {
-    el.classList.remove('reveal', 'reveal-left', 'reveal-right', 'reveal-scale');
+    el.style.transitionDuration = '0.3s';
+    el.classList.add('visible');
   } else {
     revealObserver.observe(el);
   }
