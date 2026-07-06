@@ -1,1 +1,21 @@
-test: ok
+backend:
+  name: github
+  repo: RedDev765/ecole-integrale-agadir
+  branch: main
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: actualites
+    label: Actualites
+    label_singular: Actualite
+    folder: _posts
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - {label: Titre, name: title, widget: string}
+      - {label: Date, name: date, widget: datetime}
+      - {label: Image, name: image, widget: image, required: false}
+      - {label: Resume, name: description, widget: text}
+      - {label: Contenu, name: body, widget: markdown}
