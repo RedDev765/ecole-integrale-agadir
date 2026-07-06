@@ -1,13 +1,11 @@
-// Navigation toggle
+// Navigation
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');
-
 if (navToggle && nav) {
   navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');
     nav.classList.toggle('open');
   });
-
   document.querySelectorAll('.nav-list a').forEach(link => {
     link.addEventListener('click', () => {
       navToggle.classList.remove('active');
@@ -16,60 +14,132 @@ if (navToggle && nav) {
   });
 }
 
-// Header scroll effect
+// Header scroll
 const header = document.querySelector('.header');
-let lastScroll = 0;
-
 window.addEventListener('scroll', () => {
-  const currentScroll = window.scrollY;
-  if (currentScroll > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-  lastScroll = currentScroll;
+  if (window.scrollY > 50) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
 });
 
 // Active nav link
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-list a').forEach(link => {
-  const linkPath = link.getAttribute('href');
-  if (linkPath === currentPath) {
-    link.classList.add('active');
-  }
+  if (link.getAttribute('href') === currentPath) link.classList.add('active');
 });
 
-// Scroll reveal animation
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
+// === SCROLL REVEAL ===
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.add('visible');
     }
   });
-}, observerOptions);
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .about-grid, .contact-grid').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'all 0.6s ease';
-  observer.observe(el);
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+  revealObserver.observe(el);
 });
 
-// Smooth anchor scroll
+// Apply reveal classes to cards
+document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.transitionDelay = `${i * 0.1}s`;
+  revealObserver.observe(el);
+});
+
+document.querySelectorAll('.about-grid .about-content').forEach(el => el.classList.add('reveal-left'));
+document.querySelectorAll('.about-grid .about-image-wrap').forEach(el => el.classList.add('reveal-right'));
+document.querySelectorAll('.section-header').forEach(el => el.classList.add('reveal'));
+document.querySelectorAll('.parents-card').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.transitionDelay = `${i * 0.15}s`;
+  revealObserver.observe(el);
+});
+document.querySelectorAll('.contact-grid > div').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.transitionDelay = `${i * 0.15}s`;
+  revealObserver.observe(el);
+});
+
+// === COUNTER ANIMATION ===
+function animateCounter(el) {
+  const target = parseInt(el.textContent.replace(/[^0-9]/g, ''));
+  const suffix = el.textContent.replace(/[0-9]/g, '').trim();
+  let current = 0;
+  const step = Math.ceil(target / 60);
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = current + (suffix ? ' ' + suffix : '');
+  }, 25);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number, .hero-stat .num').forEach(el => {
+  counterObserver.observe(el);
+});
+
+// === HERO PARTICLES ===
+const particlesContainer = document.querySelector('.hero-particles');
+if (particlesContainer) {
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.width = `${2 + Math.random() * 4}px`;
+    particle.style.height = particle.style.width;
+    particle.style.animationDuration = `${6 + Math.random() * 10}s`;
+    particle.style.animationDelay = `${Math.random() * 8}s`;
+    if (Math.random() > 0.5) {
+      particle.style.background = 'var(--gold-light)';
+    }
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// === MOUSE PARALLAX ON CARDS ===
+document.querySelectorAll('.feature-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
+  });
+});
+
+// === SMOOTH ANCHOR SCROLL ===
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
     if (href === '#') return;
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// === NAVBAR SHRINK ON SCROLL DOWN / EXPAND ON SCROLL UP ===
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  if (currentScroll > 200) {
+    document.querySelector('.header-inner').style.height = '64px';
+  } else {
+    document.querySelector('.header-inner').style.height = '80px';
+  }
+  lastScroll = currentScroll;
+});
+
+console.log('✨ Intégrale Campus — Premium experience loaded');
