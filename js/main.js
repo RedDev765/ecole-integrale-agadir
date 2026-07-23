@@ -46,7 +46,7 @@ function trackReveal(el, delay) {
   revealElements.push(el);
 }
 
-document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .section-header, .contact-grid > div').forEach((el, i) => {
+document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .testimonial-card, .section-header, .contact-grid > div').forEach((el, i) => {
   el.classList.add('reveal');
   trackReveal(el, `${i * 0.1}s`);
 });
