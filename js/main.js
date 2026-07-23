@@ -38,6 +38,28 @@ document.querySelectorAll('.nav-list a').forEach(link => {
   if (link.getAttribute('href') === currentPath) link.classList.add('active');
 });
 
+// === DARK / LIGHT MODE ===
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeToggle.textContent = 'â˜€ï¸';
+  }
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+      themeToggle.textContent = 'ðŸŒ™';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+      themeToggle.textContent = 'â˜€ï¸';
+    }
+  });
+}
+
 // === SCROLL REVEAL ===
 const revealElements = [];
 
@@ -46,7 +68,7 @@ function trackReveal(el, delay) {
   revealElements.push(el);
 }
 
-document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .testimonial-card, .section-header, .contact-grid > div').forEach((el, i) => {
+document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .testimonial-card, .section-header, .contact-grid > div, .day-step, .day-content').forEach((el, i) => {
   el.classList.add('reveal');
   trackReveal(el, `${i * 0.1}s`);
 });
@@ -69,7 +91,20 @@ revealElements.forEach(el => {
   }
 });
 
-// === COUNTER ANIMATION ===
+// === TIMELINE SCROLL REVEAL ===
+document.querySelectorAll('.timeline-step, .day-step').forEach((el, i) => {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 150);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  obs.observe(el);
+});
+
+// === COUNTER ANIMATION WITH RING ===
 function animateCounter(el) {
   const target = parseInt(el.textContent.replace(/[^0-9]/g, ''), 10);
   const suffix = el.textContent.replace(/[0-9]/g, '').trim();
@@ -96,32 +131,100 @@ const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       animateCounter(entry.target);
+      const ring = entry.target.closest('.stat-item')?.querySelector('.stat-ring-fill');
+      if (ring) ring.classList.add('animate');
       counterObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.stat-number, .hero-stat .num').forEach(el => {
+  const statItem = el.closest('.stat-item, .hero-stat');
+  if (statItem && !statItem.querySelector('.stat-ring')) {
+    const ringSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ringSvg.setAttribute('viewBox', '0 0 48 48');
+    ringSvg.classList.add('stat-ring');
+    const bgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    bgCircle.setAttribute('cx', '24'); bgCircle.setAttribute('cy', '24'); bgCircle.setAttribute('r', '20');
+    bgCircle.classList.add('stat-ring-bg');
+    const fillCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    fillCircle.setAttribute('cx', '24'); fillCircle.setAttribute('cy', '24'); fillCircle.setAttribute('r', '20');
+    fillCircle.classList.add('stat-ring-fill');
+    ringSvg.appendChild(bgCircle);
+    ringSvg.appendChild(fillCircle);
+    statItem.appendChild(ringSvg);
+  }
   counterObserver.observe(el);
 });
 
-// === HERO PARTICLES ===
+// === HERO PARTICLES (INTERACTIVE) ===
 const particlesContainer = document.querySelector('.hero-particles');
 if (particlesContainer) {
-  for (let i = 0; i < 20; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = `${Math.random() * 100}%`;
-    const size = 2 + Math.random() * 4;
-    particle.style.width = `${size}px`;
-    particle.style.height = `${size}px`;
-    particle.style.animationDuration = `${6 + Math.random() * 10}s`;
-    particle.style.animationDelay = `${Math.random() * 8}s`;
-    if (Math.random() > 0.5) {
-      particle.style.background = 'var(--gold-light)';
-    }
-    particlesContainer.appendChild(particle);
+  const particles = [];
+  const mouse = { x: 0, y: 0 };
+
+  document.addEventListener('mousemove', (e) => {
+    const rect = particlesContainer.getBoundingClientRect();
+    mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+  });
+
+  for (let i = 0; i < 30; i++) {
+    const p = {
+      x: Math.random() * 100, y: Math.random() * 100,
+      vx: (Math.random() - 0.5) * 0.6, vy: (Math.random() - 0.5) * 0.6,
+      size: 2 + Math.random() * 4, el: null
+    };
+    const el = document.createElement('div');
+    el.className = 'particle interactive';
+    el.style.cssText = `left:${p.x}%;top:${p.y}%;width:${p.size}px;height:${p.size}px;background:${Math.random() > 0.5 ? 'var(--gold-light)' : 'rgba(255,255,255,0.3)'}`;
+    particlesContainer.appendChild(el);
+    p.el = el;
+    particles.push(p);
   }
+
+  // Canvas for connections
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+  particlesContainer.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = particlesContainer.offsetWidth;
+    canvas.height = particlesContainer.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const w = canvas.width / 100, h = canvas.height / 100;
+
+    particles.forEach((p, i) => {
+      p.x += p.vx + mouse.x * 0.04;
+      p.y += p.vy + mouse.y * 0.04;
+      if (p.x < 0 || p.x > 100) p.vx *= -1;
+      if (p.y < 0 || p.y > 100) p.vy *= -1;
+      p.el.style.left = p.x + '%';
+      p.el.style.top = p.y + '%';
+
+      particles.forEach((p2, j) => {
+        if (j <= i) return;
+        const dx = (p.x - p2.x) * w, dy = (p.y - p2.y) * h;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(201,168,76,${0.15 * (1 - dist / 150)})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(p.x * w, p.y * h);
+          ctx.lineTo(p2.x * w, p2.y * h);
+          ctx.stroke();
+        }
+      });
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
 }
 
 // === MOUSE PARALLAX ON CARDS ===
@@ -147,3 +250,46 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// === AUDIO INTRO ===
+const audioBtn = document.getElementById('audioWelcome');
+if (audioBtn) {
+  let audioCtx, source, isPlaying = false;
+  audioBtn.addEventListener('click', () => {
+    if (isPlaying) return;
+    isPlaying = true;
+    audioBtn.classList.add('playing');
+    audioBtn.querySelector('.audio-text').textContent = 'Lecture...';
+
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+
+    // Simple melody: notes in Hz (C4, E4, G4, C5 arpeggio)
+    const notes = [261.63, 329.63, 392.00, 523.25];
+    notes.forEach((freq, i) => {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0, now + i * 0.3);
+      g.gain.linearRampToValueAtTime(0.15, now + i * 0.3 + 0.05);
+      g.gain.linearRampToValueAtTime(0, now + i * 0.3 + 0.25);
+      o.connect(g);
+      g.connect(audioCtx.destination);
+      o.start(now + i * 0.3);
+      o.stop(now + i * 0.3 + 0.3);
+    });
+
+    setTimeout(() => {
+      isPlaying = false;
+      audioBtn.classList.remove('playing');
+      audioBtn.querySelector('.audio-text').textContent = 'Message de bienvenue';
+    }, 1800);
+  });
+}

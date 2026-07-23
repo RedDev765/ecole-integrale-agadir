@@ -8,16 +8,16 @@ public_folder: "/images/uploads"
 
 collections:
   - name: "actualites"
-    label: "Actualités"
-    label_singular: "Actualité"
+    label: "ActualitÃ©s"
+    label_singular: "ActualitÃ©"
     folder: "_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date de publication", name: "date", widget: "datetime" }
-      - { label: "Image à la une", name: "image", widget: "image", required: false }
-      - { label: "Résumé", name: "description", widget: "text" }
+      - { label: "Image Ã  la une", name: "image", widget: "image", required: false }
+      - { label: "RÃ©sumÃ©", name: "description", widget: "text" }
       - { label: "Contenu", name: "body", widget: "markdown" }
 
   - name: "pages"

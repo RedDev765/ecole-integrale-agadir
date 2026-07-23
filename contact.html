@@ -39,6 +39,10 @@
 
   <title>Contact - École Intégrale — Campus Agadir Bay</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="École Intégrale">
 </head>
 <body>
 
@@ -66,6 +70,7 @@
         <li><a href="parents.html" class="">Parents</a></li>
         <li><a href="contact.html" class="nav-cta active">Contact</a></li>
       </ul>
+      <li><button class="theme-toggle" id="themeToggle" aria-label="Mode nuit/jour">🌙</button></li>
     </nav>
   </div>
 </header>
@@ -182,10 +187,28 @@
             ✓ Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.
           </div>
         </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="visite-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="overline">Visite virtuelle</span>
+      <h2 id="visite-title">Explorez notre campus en 360°</h2>
+      <p>Faites tourner et zoomez pour découvrir notre établissement comme si vous y étiez.</p>
+      <div class="gold-line" aria-hidden="true"></div>
+    </div>
+    <div class="panorama-container" id="panorama">
+      <div class="panorama-placeholder">
+        <span class="panorama-icon" aria-hidden="true">🔄</span>
+        <p>Visite virtuelle 360°</p>
+        <span class="panorama-hint">Chargez une photo 360° du campus pour activer</span>
       </div>
     </div>
   </div>
 </section>
+
 
 <script>
   if (window.location.search.includes('sent=ok')) {
@@ -260,5 +283,10 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
+</script>
 </body>
 </html>

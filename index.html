@@ -39,6 +39,10 @@
 
   <title>École Intégrale — Campus Agadir Bay - Éducation d'excellence de la Maternelle au Lycée</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="École Intégrale">
 </head>
 <body>
 
@@ -66,6 +70,7 @@
         <li><a href="parents.html" class="">Parents</a></li>
         <li><a href="contact.html" class="nav-cta ">Contact</a></li>
       </ul>
+      <li><button class="theme-toggle" id="themeToggle" aria-label="Mode nuit/jour">🌙</button></li>
     </nav>
   </div>
 </header>
@@ -82,6 +87,12 @@
       <div class="hero-buttons">
         <a href="about.html" class="btn btn-primary">Découvrir l'école →</a>
         <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+      </div>
+      <div class="hero-audio">
+        <button class="btn-audio" id="audioWelcome" aria-label="Écouter le message de bienvenue">
+          <span class="audio-icon">🔊</span>
+          <span class="audio-text">Message de bienvenue</span>
+        </button>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -176,51 +187,68 @@
   </div>
 </section>
 
-<section class="section section-blue" aria-labelledby="programs-title">
+<section class="section section-blue" aria-labelledby="parcours-title">
   <div class="container">
     <div class="section-header">
       <span class="overline">Notre offre</span>
-      <h2 id="programs-title">Nos Programmes</h2>
-      <p>Un parcours cohérent et progressif de la Maternelle au Lycée.</p>
+      <h2 id="parcours-title">Un Parcours d'Excellence</h2>
+      <p>De la Maternelle au Lycée, chaque étape est conçue pour révéler le potentiel de votre enfant.</p>
       <div class="gold-line" aria-hidden="true"></div>
     </div>
-    <div class="programs-grid">
-      <article class="program-card">
-        <div class="level">Maternelle</div>
-        <h3>Cycle Préscolaire</h3>
-        <p>Éveil et socialisation dans un environnement bienveillant. Initiation aux langues et découverte du monde à travers le jeu et l'exploration.</p>
-        <span class="badge">TPS - GS</span>
-      </article>
-      <article class="program-card">
-        <div class="level">Primaire</div>
-        <h3>Cycle Fondamental</h3>
-        <p>Acquisition des savoirs fondamentaux avec un accent sur le trilingue, les mathématiques et l'éveil scientifique et artistique.</p>
-        <span class="badge">CP - CM2</span>
-      </article>
-      <article class="program-card">
-        <div class="level">Collège</div>
-        <h3>Cycle d'Approfondissement</h3>
-        <p>Renforcement des acquis et développement de l'autonomie avec une ouverture vers les disciplines scientifiques et littéraires.</p>
-        <span class="badge">6ème - 3ème</span>
-      </article>
-      <article class="program-card">
-        <div class="level">Lycée</div>
-        <h3>Tronc Commun Scientifique</h3>
-        <p>Base scientifique solide commune, préparant aux choix de spécialisation en 1ère et 2ème année du Baccalauréat.</p>
-        <span class="badge">Tronc commun</span>
-      </article>
-      <article class="program-card">
-        <div class="level">1ère Bac</div>
-        <h3>Sciences Maths & Sciences Expé & Économie</h3>
-        <p>Trois filières d'excellence pour préparer au mieux l'orientation post-bac.</p>
-        <span class="badge">1ère année</span>
-      </article>
-      <article class="program-card">
-        <div class="level">2ème Bac</div>
-        <h3>Sciences Physiques & Sciences Maths & Économie</h3>
-        <p>Préparation intensive au Baccalauréat avec un accompagnement renforcé vers les grandes écoles et universités.</p>
-        <span class="badge">2ème année</span>
-      </article>
+    <div class="timeline">
+      <div class="timeline-track" aria-hidden="true"></div>
+      <div class="timeline-step" data-year="3-5 ans">
+        <div class="timeline-marker" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-line"></span>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-icon" aria-hidden="true">🧸</div>
+          <span class="timeline-level">Maternelle</span>
+          <h3>Cycle Préscolaire</h3>
+          <p>Éveil et socialisation dans un environnement bienveillant. Initiation aux langues et découverte du monde à travers le jeu et l'exploration.</p>
+          <span class="badge">TPS - GS</span>
+        </div>
+      </div>
+      <div class="timeline-step" data-year="6-11 ans">
+        <div class="timeline-marker" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-line"></span>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-icon" aria-hidden="true">📚</div>
+          <span class="timeline-level">Primaire</span>
+          <h3>Cycle Fondamental</h3>
+          <p>Acquisition des savoirs fondamentaux avec un accent sur le trilingue, les mathématiques et l'éveil scientifique et artistique.</p>
+          <span class="badge">CP - CM2</span>
+        </div>
+      </div>
+      <div class="timeline-step" data-year="12-15 ans">
+        <div class="timeline-marker" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-line"></span>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-icon" aria-hidden="true">🔬</div>
+          <span class="timeline-level">Collège</span>
+          <h3>Cycle d'Approfondissement</h3>
+          <p>Renforcement des acquis et développement de l'autonomie avec une ouverture vers les disciplines scientifiques et littéraires.</p>
+          <span class="badge">6ème - 3ème</span>
+        </div>
+      </div>
+      <div class="timeline-step" data-year="16-18 ans">
+        <div class="timeline-marker" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-line"></span>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-icon" aria-hidden="true">🎓</div>
+          <span class="timeline-level">Lycée</span>
+          <h3>Cycle d'Excellence</h3>
+          <p>Sciences Maths, Sciences Expérimentales ou Économie. Un accompagnement renforcé vers les grandes écoles et universités.</p>
+          <span class="badge">Tronc commun - Bac</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -252,6 +280,59 @@
         <span class="role">Service administratif</span>
         <p class="bio">Une équipe administrative à l'écoute pour accompagner les familles dans toutes leurs démarches.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section-blue-light" aria-labelledby="journee-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="overline">Temps scolaire</span>
+      <h2 id="journee-title">Une Journée à l'École Intégrale</h2>
+      <p>Chaque journée est rythmée par des temps d'apprentissage, de partage et d'épanouissement.</p>
+      <div class="gold-line" aria-hidden="true"></div>
+    </div>
+    <div class="day-timeline">
+      <div class="day-step" data-time="08h00">
+        <div class="day-icon" aria-hidden="true">🚪</div>
+        <div class="day-content">
+          <span class="day-time">08h00</span>
+          <h4>Accueil</h4>
+          <p>Arrivée échelonnée des élèves, accueil personnalisé par les enseignants.</p>
+        </div>
+      </div>
+      <div class="day-step" data-time="08h30">
+        <div class="day-icon" aria-hidden="true">📖</div>
+        <div class="day-content">
+          <span class="day-time">08h30</span>
+          <h4>Cours du matin</h4>
+          <p>Français, Maths, Anglais et Arabe en petits groupes pour un apprentissage efficace.</p>
+        </div>
+      </div>
+      <div class="day-step" data-time="12h00">
+        <div class="day-icon" aria-hidden="true">🍽️</div>
+        <div class="day-content">
+          <span class="day-time">12h00</span>
+          <h4>Déjeuner & Détente</h4>
+          <p>Repas équilibré suivi de moments de jeu et de détente encadrés.</p>
+        </div>
+      </div>
+      <div class="day-step" data-time="14h00">
+        <div class="day-icon" aria-hidden="true">🎨</div>
+        <div class="day-content">
+          <span class="day-time">14h00</span>
+          <h4>Activités de l'après-midi</h4>
+          <p>Sciences, arts, sports ou clubs de langues selon le programme de chaque classe.</p>
+        </div>
+      </div>
+      <div class="day-step" data-time="16h00">
+        <div class="day-icon" aria-hidden="true">👋</div>
+        <div class="day-content">
+          <span class="day-time">16h00</span>
+          <h4>Départ & Périscolaire</h4>
+          <p>Fin des cours, activités périscolaires optionnelles ou retour en famille.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -405,5 +486,10 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
+</script>
 </body>
 </html>
