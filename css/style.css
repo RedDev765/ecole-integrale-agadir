@@ -1883,6 +1883,11 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   .testimonials-grid { grid-template-columns: 1fr; }
   .testimonial-card { padding: 28px 24px; }
+  .day-timeline::before { left: 22px; }
+  .day-step { gap: 14px; }
+  .day-icon { width: 44px; height: 44px; min-width: 44px; font-size: 1.1rem; }
+  .day-content h4 { font-size: 0.95rem; }
+  .day-content p { font-size: 0.85rem; }
 }
 
 /* ===== DARK MODE ===== */
@@ -2570,9 +2575,11 @@ ul { list-style: none; }
   .timeline-step.visible, .timeline-step:nth-child(even).visible { transform: translateX(0); }
   .timeline-marker { width: 40px; }
   .timeline-card { width: calc(100% - 60px); }
-  .day-timeline::before { left: 20px; }
-  .day-step { gap: 16px; }
+  .day-timeline::before { left: 22px; }
+  .day-step { gap: 14px; }
   .day-icon { width: 44px; height: 44px; min-width: 44px; font-size: 1.1rem; }
+  .day-content h4 { font-size: 0.95rem; }
+  .day-content p { font-size: 0.85rem; }
 }
 
 /* ===== PRINT ===== */

@@ -44,18 +44,18 @@ if (themeToggle) {
   const saved = localStorage.getItem('theme');
   if (saved === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-    themeToggle.textContent = 'â˜€ï¸';
+    themeToggle.textContent = '☀️';
   }
   themeToggle.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     if (isDark) {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('theme', 'light');
-      themeToggle.textContent = 'ðŸŒ™';
+      themeToggle.textContent = '🌙';
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
-      themeToggle.textContent = 'â˜€ï¸';
+      themeToggle.textContent = '☀️';
     }
   });
 }
