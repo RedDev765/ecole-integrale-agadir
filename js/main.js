@@ -68,7 +68,7 @@ function trackReveal(el, delay) {
   revealElements.push(el);
 }
 
-document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .testimonial-card, .section-header, .contact-grid > div, .day-step, .day-content').forEach((el, i) => {
+document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .testimonial-card, .day-card, .section-header, .contact-grid > div').forEach((el, i) => {
   el.classList.add('reveal');
   trackReveal(el, `${i * 0.1}s`);
 });
@@ -138,8 +138,8 @@ const counterObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-number, .hero-stat .num').forEach(el => {
-  const statItem = el.closest('.stat-item, .hero-stat');
+document.querySelectorAll('.stat-number').forEach(el => {
+  const statItem = el.closest('.stat-item');
   if (statItem && !statItem.querySelector('.stat-ring')) {
     const ringSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     ringSvg.setAttribute('viewBox', '0 0 48 48');
@@ -157,14 +157,17 @@ document.querySelectorAll('.stat-number, .hero-stat .num').forEach(el => {
   counterObserver.observe(el);
 });
 
-// === HERO PARTICLES (INTERACTIVE) ===
-const particlesContainer = document.querySelector('.hero-particles');
-if (particlesContainer) {
+// === HERO INTERACTIVE PARTICLES ===
+const oldParticles = document.querySelector('.hero-particles');
+if (oldParticles) {
+  // Remove old floating particles
+  oldParticles.innerHTML = '';
+
   const particles = [];
   const mouse = { x: 0, y: 0 };
 
   document.addEventListener('mousemove', (e) => {
-    const rect = particlesContainer.getBoundingClientRect();
+    const rect = oldParticles.getBoundingClientRect();
     mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
   });
@@ -176,22 +179,21 @@ if (particlesContainer) {
       size: 2 + Math.random() * 4, el: null
     };
     const el = document.createElement('div');
-    el.className = 'particle interactive';
-    el.style.cssText = `left:${p.x}%;top:${p.y}%;width:${p.size}px;height:${p.size}px;background:${Math.random() > 0.5 ? 'var(--gold-light)' : 'rgba(255,255,255,0.3)'}`;
-    particlesContainer.appendChild(el);
+    el.className = 'particle';
+    el.style.cssText = `left:${p.x}%;top:${p.y}%;width:${p.size}px;height:${p.size}px;opacity:0.6;background:${Math.random() > 0.5 ? 'var(--gold-light)' : 'rgba(255,255,255,0.3)'}`;
+    oldParticles.appendChild(el);
     p.el = el;
     particles.push(p);
   }
 
-  // Canvas for connections
   const canvas = document.createElement('canvas');
-  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;';
-  particlesContainer.appendChild(canvas);
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+  oldParticles.appendChild(canvas);
   const ctx = canvas.getContext('2d');
 
   function resizeCanvas() {
-    canvas.width = particlesContainer.offsetWidth;
-    canvas.height = particlesContainer.offsetHeight;
+    canvas.width = oldParticles.offsetWidth;
+    canvas.height = oldParticles.offsetHeight;
   }
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
