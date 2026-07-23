@@ -19,3 +19,24 @@ collections:
       - { label: "Image à la une", name: "image", widget: "image", required: false }
       - { label: "Résumé", name: "description", widget: "text" }
       - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "accueil"
+        label: "Page d'accueil"
+        file: "src/pages/index.html"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Contenu", name: "body", widget: "hidden", default: "" }
+
+  - name: "documents"
+    label: "Documents"
+    label_singular: "Document"
+    folder: "downloads"
+    create: true
+    extension: "pdf"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Fichier", name: "file", widget: "file" }
