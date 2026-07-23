@@ -945,6 +945,23 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 
+.section-light .program-card {
+  background: var(--white);
+  border-color: var(--border);
+}
+
+.section-light .program-card h3 { color: var(--primary); }
+.section-light .program-card p { color: var(--text-gray); }
+.section-light .program-card .level { color: var(--gold); }
+.section-light .program-card .badge {
+  color: var(--gold);
+  background: var(--off-white);
+  border-color: var(--border);
+}
+.section-light .program-details {
+  color: var(--text-gray);
+}
+
 /* ===== TEAM ===== */
 .team-grid {
   display: grid;
