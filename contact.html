@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -50,27 +50,27 @@
 
 <header class="header">
   <div class="container header-inner">
-    <a href="index.html" class="logo" aria-label="Retour à l'accueil">
+    <a href="/" class="logo" aria-label="Retour à l'accueil">
       <img src="images/logo.jpg" alt="École Intégrale" class="logo-img" width="48" height="48">
       <div class="logo-text">
         <strong>École Intégrale</strong>
         <span>Agadir Bay</span>
       </div>
     </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Mode nuit/jour">🌙</button>
     <button class="nav-toggle" aria-label="Menu de navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="nav" aria-label="Navigation principale">
       <ul class="nav-list">
-        <li><a href="index.html" class="">Accueil</a></li>
-        <li><a href="about.html" class="">Présentation</a></li>
-        <li><a href="programs.html" class="">Programmes</a></li>
-        <li><a href="team.html" class="">Équipe</a></li>
-        <li><a href="blog.html" class="">Actualités</a></li>
-        <li><a href="parents.html" class="">Parents</a></li>
-        <li><a href="contact.html" class="nav-cta active">Contact</a></li>
+        <li><a href="/" class="">Accueil</a></li>
+        <li><a href="/about" class="">Présentation</a></li>
+        <li><a href="/programs" class="">Programmes</a></li>
+        <li><a href="/team" class="">Équipe</a></li>
+        <li><a href="/blog" class="">Actualités</a></li>
+        <li><a href="/parents" class="">Parents</a></li>
+        <li><a href="/contact" class="nav-cta active">Contact</a></li>
       </ul>
-      <li><button class="theme-toggle" id="themeToggle" aria-label="Mode nuit/jour">🌙</button></li>
     </nav>
   </div>
 </header>
@@ -254,17 +254,17 @@
       <div>
         <h4>Liens rapides</h4>
         <ul class="footer-links">
-          <li><a href="about.html">Présentation</a></li>
-          <li><a href="programs.html">Programmes</a></li>
-          <li><a href="team.html">Équipe</a></li>
-          <li><a href="blog.html">Actualités</a></li>
+          <li><a href="/about">Présentation</a></li>
+          <li><a href="/programs">Programmes</a></li>
+          <li><a href="/team">Équipe</a></li>
+          <li><a href="/blog">Actualités</a></li>
         </ul>
       </div>
       <div>
         <h4>Informations</h4>
         <ul class="footer-links">
-          <li><a href="parents.html">Espace Parents</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/parents">Espace Parents</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -283,7 +283,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="js/chatbot.js"></script>
 <script>
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
