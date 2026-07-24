@@ -172,7 +172,6 @@ document.querySelectorAll('.stat-number').forEach(el => {
 // === HERO INTERACTIVE PARTICLES ===
 const oldParticles = document.querySelector('.hero-particles');
 if (oldParticles) {
-  // Remove old floating particles
   oldParticles.innerHTML = '';
 
   const particles = [];
