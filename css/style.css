@@ -1973,11 +1973,16 @@ ul { list-style: none; }
 [data-theme="dark"] .team-card .bio { color: var(--text-gray); }
 [data-theme="dark"] .team-card .role { color: var(--gold); }
 
+/* Section header dark */
+[data-theme="dark"] .section-header h2 { color: var(--text-dark); }
+[data-theme="dark"] .section-header p { color: var(--text-gray); }
+
 /* About dark */
 [data-theme="dark"] .about-content h2 { color: var(--text-dark); }
 [data-theme="dark"] .about-content p { color: var(--text-gray); }
 [data-theme="dark"] .about-text h2 { color: var(--text-dark); }
 [data-theme="dark"] .about-text p { color: var(--text-gray); }
+[data-theme="dark"] .mission-list { color: var(--text-gray); }
 
 /* Stats dark */
 [data-theme="dark"] .stat-item { background: #151F30; border-color: rgba(255,255,255,0.06); }
