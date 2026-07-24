@@ -1,7 +1,7 @@
-const CACHE = 'ecole-integrale-v1';
+const CACHE = 'ecole-integrale-v2';
 const urls = [
-  '/', '/index.html', '/about.html', '/programs.html', '/team.html',
-  '/blog.html', '/parents.html', '/contact.html',
+  '/', '/about', '/programs', '/team',
+  '/blog', '/parents', '/contact',
   '/css/style.css', '/js/main.js', '/js/chatbot.js',
   '/images/logo.jpg', '/images/campus.jpg',
   '/admin/index.html', '/manifest.json'
