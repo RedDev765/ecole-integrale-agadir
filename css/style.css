@@ -2007,6 +2007,21 @@ ul { list-style: none; }
 
 /* Sections light dark */
 [data-theme="dark"] .section-light { background: #0D1520; }
+[data-theme="dark"] .section-blue-light { background: linear-gradient(170deg, #0D1520, #151F30); color: var(--text-dark); }
+[data-theme="dark"] .section-blue-light h2 { color: var(--text-dark); }
+[data-theme="dark"] .section-blue-light p { color: var(--text-gray); }
+[data-theme="dark"] .section-blue-light .overline { color: var(--gold-light); }
+
+/* All white text becomes light text in dark mode */
+[data-theme="dark"] .feature-card h3 { color: var(--text-dark); }
+[data-theme="dark"] .feature-card p { color: var(--text-gray); }
+[data-theme="dark"] .timeline-card h3 { color: var(--text-dark); }
+[data-theme="dark"] .timeline-level { color: var(--gold-light); }
+[data-theme="dark"] .testimonial-stars { color: var(--gold); }
+[data-theme="dark"] .blog-card-body h3 { color: var(--text-dark); }
+[data-theme="dark"] .blog-card-body p { color: var(--text-gray); }
+[data-theme="dark"] .blog-card-body .date { color: var(--text-light); }
+[data-theme="dark"] .date-tag { background: var(--gold); color: var(--primary-dark); }
 
 [data-theme="dark"] .section-light .section-header h2 { color: var(--text-dark); }
 [data-theme="dark"] .section-light .section-header p { color: var(--text-gray); }
