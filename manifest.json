@@ -1,0 +1,24 @@
+{
+  "name": "École Intégrale — Campus Agadir Bay",
+  "short_name": "École Intégrale",
+  "description": "Établissement scolaire privé offrant une éducation trilingue de la Maternelle au Lycée à Agadir",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#0A1628",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
