@@ -26,7 +26,7 @@ const chatbotHTML = `
 document.body.insertAdjacentHTML('beforeend', chatbotHTML);
 
 const toggle = document.getElementById('chatbotToggle');
-const window = document.getElementById('chatbotWindow');
+const chatbox = document.getElementById('chatbotWindow');
 const closeBtn = document.getElementById('chatbotClose');
 const messages = document.getElementById('chatbotMessages');
 const input = document.getElementById('chatbotInput');
@@ -34,12 +34,12 @@ const sendBtn = document.getElementById('chatbotSend');
 const notif = toggle.querySelector('.chatbot-notif');
 
 toggle.addEventListener('click', () => {
-  window.classList.toggle('open');
+  chatbox.classList.toggle('open');
   notif.style.display = 'none';
 });
 
 closeBtn.addEventListener('click', () => {
-  window.classList.remove('open');
+  chatbox.classList.remove('open');
 });
 
 const responses = {
