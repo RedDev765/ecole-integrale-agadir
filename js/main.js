@@ -1,6 +1,7 @@
 // === SCROLL PROGRESS BAR ===
 const scrollProgress = document.createElement('div');
 scrollProgress.className = 'scroll-progress';
+scrollProgress.setAttribute('aria-hidden', 'true');
 document.body.prepend(scrollProgress);
 
 window.addEventListener('scroll', () => {
@@ -41,14 +42,8 @@ if (header) {
       });
       ticking = true;
     }
-  });
+  }, { passive: true });
 }
-
-// === ACTIVE NAV LINK ===
-const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav-list a').forEach(link => {
-  if (link.getAttribute('href') === currentPath) link.classList.add('active');
-});
 
 // === DARK / LIGHT MODE ===
 const themeToggle = document.getElementById('themeToggle');
@@ -80,7 +75,7 @@ function trackReveal(el, delay) {
   revealElements.push(el);
 }
 
-document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .parents-card, .testimonial-card, .day-card, .section-header, .contact-grid > div').forEach((el, i) => {
+document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .testimonial-card, .section-header, .contact-grid > div').forEach((el, i) => {
   el.classList.add('reveal');
   trackReveal(el, `${i * 0.1}s`);
 });

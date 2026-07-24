@@ -71,8 +71,8 @@ function getResponse(inputText) {
   for (const key of keys) {
     if (t.includes(key)) return responses[key];
   }
-  if (/fr|franc/.test(t)) return '🇫🇷 Bonjour ! Tapez un mot-clé (inscription, programme, adresse, horaire, contact) pour obtenir des informations.';
-  if (/en|angl/.test(t)) return '🇬🇧 Hello! Type a keyword (registration, program, address, hours, contact) to get information.';
+  if (/\bfr\b|\bfranc/.test(t)) return '🇫🇷 Bonjour ! Tapez un mot-clé (inscription, programme, adresse, horaire, contact) pour obtenir des informations.';
+  if (/\bengl|\bangl/.test(t)) return '🇬🇧 Hello! Type a keyword (registration, program, address, hours, contact) to get information.';
   return '🤖 Désolé, je n\'ai pas compris. Essayez : bonjour, inscription, programme, adresse, horaire, contact. / Sorry, I didn\'t understand. Try: hello, registration, program, address, hours, contact.';
 }
 

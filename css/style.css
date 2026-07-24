@@ -298,60 +298,6 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  pointer-events: none;
-  animation: orbFloat 12s ease-in-out infinite;
-}
-
-.hero-orb:nth-child(1) {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%);
-  top: -20%;
-  right: -10%;
-  animation-delay: 0s;
-}
-
-.hero-orb:nth-child(2) {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(30,110,181,0.15), transparent 70%);
-  bottom: -15%;
-  left: -5%;
-  animation-delay: -4s;
-}
-
-.hero-orb:nth-child(3) {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%);
-  top: 50%;
-  left: 40%;
-  animation-delay: -8s;
-}
-
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
-}
-
-.hero-grid-pattern {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-  z-index: 0;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-}
-
 .hero-particles {
   position: absolute;
   inset: 0;
@@ -565,19 +511,6 @@ ul { list-style: none; }
   backdrop-filter: blur(4px);
 }
 
-/* ===== SECTION DIVIDERS ===== */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-  margin: 0;
-}
-
-.section-divider-gold {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
-  border: none;
-  margin: 0;
-}
 
 /* ===== SECTIONS ===== */
 .section {
@@ -1325,49 +1258,6 @@ ul { list-style: none; }
   gap: 30px;
 }
 
-.parents-card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 44px 40px;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
-  transition: var(--transition);
-}
-
-.parents-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
-}
-
-.parents-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'Playfair Display', serif;
-}
-
-.parents-card ul li {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-gray);
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: var(--transition-fast);
-}
-
-.parents-card ul li:hover {
-  color: var(--primary);
-  padding-left: 8px;
-}
-
-.parents-card ul li:last-child { border-bottom: none; }
-
 .download-list {
   display: flex;
   flex-direction: column;
@@ -1928,7 +1818,6 @@ ul { list-style: none; }
 [data-theme="dark"] .about-text h2,
 [data-theme="dark"] .stat-number,
 [data-theme="dark"] .team-card h4,
-[data-theme="dark"] .parents-card h3,
 [data-theme="dark"] .contact-info h3,
 [data-theme="dark"] .contact-form h3,
 [data-theme="dark"] .form-group label,
@@ -1946,7 +1835,6 @@ ul { list-style: none; }
 [data-theme="dark"] .about-text p,
 [data-theme="dark"] .stat-label,
 [data-theme="dark"] .team-card .bio,
-[data-theme="dark"] .parents-card ul li,
 [data-theme="dark"] .contact-detail h4,
 [data-theme="dark"] .contact-cta-card p,
 [data-theme="dark"] .download-item .file-info span,
@@ -2039,10 +1927,9 @@ ul { list-style: none; }
 [data-theme="dark"] .section-light .program-card .level { color: var(--gold); }
 [data-theme="dark"] .section-light .program-card .badge { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); color: var(--gold); }
 
-/* Testimonials, team, parents dark */
+/* Testimonials, team dark */
 [data-theme="dark"] .testimonial-card,
-[data-theme="dark"] .team-card,
-[data-theme="dark"] .parents-card { background: #151F30; border-color: rgba(255,255,255,0.06); color: var(--text-dark); }
+[data-theme="dark"] .team-card { background: #151F30; border-color: rgba(255,255,255,0.06); color: var(--text-dark); }
 [data-theme="dark"] .testimonial-text { color: var(--text-gray); }
 [data-theme="dark"] .testimonial-author strong { color: var(--text-dark); }
 [data-theme="dark"] .testimonial-author span { color: var(--text-light); }
@@ -2062,8 +1949,6 @@ ul { list-style: none; }
 [data-theme="dark"] .day-icon { background: #151F30; border-color: var(--gold); }
 
 /* Parents dark */
-[data-theme="dark"] .parents-card h3 { color: var(--text-dark); }
-[data-theme="dark"] .parents-card ul li { color: var(--text-gray); border-color: rgba(255,255,255,0.06); }
 [data-theme="dark"] .download-item { background: rgba(255,255,255,0.03); }
 [data-theme="dark"] .download-item .file-info strong { color: var(--text-dark); }
 [data-theme="dark"] .download-item .file-info span { color: var(--text-gray); }
@@ -2088,23 +1973,6 @@ ul { list-style: none; }
 [data-theme="dark"] .form-group input:focus,
 [data-theme="dark"] .form-group textarea:focus,
 [data-theme="dark"] .form-group select:focus { background: rgba(255,255,255,0.06); border-color: var(--gold); }
-
-/* Page header dark */
-[data-theme="dark"] .page-header p { color: rgba(255,255,255,0.6); }
-[data-theme="dark"] .breadcrumb { color: rgba(255,255,255,0.35); }
-[data-theme="dark"] .breadcrumb a { color: rgba(255,255,255,0.35); }
-[data-theme="dark"] .breadcrumb a:hover { color: var(--gold-light); }
-
-/* Blog dark */
-[data-theme="dark"] .blog-card-body .date { color: rgba(255,255,255,0.4); }
-[data-theme="dark"] .blog-card-body h3 { color: var(--text-dark); }
-[data-theme="dark"] .blog-card-body p { color: var(--text-gray); }
-
-/* Timeline dark */
-[data-theme="dark"] .timeline-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
-[data-theme="dark"] .timeline-card h3 { color: var(--text-dark); }
-[data-theme="dark"] .timeline-card p { color: var(--text-gray); }
-[data-theme="dark"] .timeline-dot { border-color: #0D1520; }
 
 /* Chatbot dark */
 [data-theme="dark"] .chatbot-window { background: #151F30; border-color: rgba(255,255,255,0.06); }
@@ -2384,68 +2252,6 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 
-/* ===== LIMITED BADGE ===== */
-.badge-limited {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 4px 14px !important;
-  background: rgba(239, 68, 68, 0.15) !important;
-  color: #EF4444 !important;
-  border-color: rgba(239, 68, 68, 0.3) !important;
-  animation: badgePulse 2s ease-in-out infinite;
-  font-size: 0.65rem !important;
-}
-
-@keyframes badgePulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
-}
-
-/* ===== PANORAMA 360 ===== */
-.panorama-container {
-  width: 100%;
-  max-width: 900px;
-  height: 500px;
-  margin: 0 auto;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  background: linear-gradient(135deg, var(--primary-deeper), var(--accent-blue));
-}
-
-.panorama-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.3);
-  gap: 12px;
-}
-
-.panorama-icon {
-  font-size: 3rem;
-  animation: spin 8s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.panorama-placeholder p {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.5);
-}
-
-.panorama-hint {
-  font-size: 0.8rem;
-  opacity: 0.4;
-}
-
 /* ===== COUNTER RING ===== */
 .stat-item {
   position: relative;
@@ -2508,23 +2314,6 @@ ul { list-style: none; }
 .chatbot-toggle:hover {
   transform: scale(1.1) translateY(-4px);
   box-shadow: 0 16px 50px rgba(10,22,40,0.4);
-}
-
-.chatbot-toggle .chatbot-notif {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 20px;
-  height: 20px;
-  background: #EF4444;
-  border-radius: 50%;
-  font-size: 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: white;
-  border: 2px solid var(--primary);
 }
 
 .chatbot-window {
