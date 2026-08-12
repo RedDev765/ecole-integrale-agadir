@@ -1,4 +1,6 @@
 // === CHATBOT 2 LANGUES (FR/EN) ===
+const schoolName = (document.querySelector('meta[property="og:site_name"]') || {}).content || 'Intégrale International School';
+
 const chatbotHTML = `
   <button class="chatbot-toggle" id="chatbotToggle" aria-label="Ouvrir le chat">
     💬
@@ -7,13 +9,13 @@ const chatbotHTML = `
     <div class="chatbot-header">
       <div class="chatbot-header-icon">🎓</div>
       <div class="chatbot-header-text">
-        <h4>Assistant Intégrale International School</h4>
+        <h4>Assistant ${schoolName}</h4>
         <span>En ligne •🇫🇷 FR / 🇬🇧 EN</span>
       </div>
       <button class="chatbot-close" id="chatbotClose" aria-label="Fermer">✕</button>
     </div>
     <div class="chatbot-messages" id="chatbotMessages">
-      <div class="chatbot-msg bot">👋 Bonjour ! Bienvenue à l'Intégrale International School. Je suis là pour répondre à vos questions. / Hello! Welcome to Intégrale International School. How can I help you?</div>
+      <div class="chatbot-msg bot">👋 Bonjour ! Bienvenue à ${schoolName}. Je suis là pour répondre à vos questions. / Hello! Welcome to ${schoolName}. How can I help you?</div>
     </div>
     <div class="chatbot-input-area">
       <input type="text" id="chatbotInput" placeholder="Écrivez votre message..." autocomplete="off">

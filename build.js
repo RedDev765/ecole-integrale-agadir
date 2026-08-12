@@ -1,15 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const pagesDir = 'src/pages';
-const partialsDir = 'src/partials';
-const outputDir = '.';
-
-// Build HTML pages
-const header = fs.readFileSync(path.join(partialsDir, 'header.html'), 'utf-8');
-const footer = fs.readFileSync(path.join(partialsDir, 'footer.html'), 'utf-8');
-
-const pageFiles = fs.readdirSync(pagesDir).filter(f => f.endsWith('.html'));
+const sites = ['international', 'haut-founty'];
 
 const activeMap = {
   'index': 'ACTIVE_INDEX',
@@ -21,54 +13,90 @@ const activeMap = {
   'contact': 'ACTIVE_CONTACT',
 };
 
-pageFiles.forEach(file => {
-  const raw = fs.readFileSync(path.join(pagesDir, file), 'utf-8');
-  const meta = {};
+// Make relative asset references (/css, /js, /images, /manifest.json) root-absolute
+// so generated pages work from any subfolder like /international/ or /haut-founty/.
+function absAssets(html) {
+  return html.replace(/(href|src)="(css\/|js\/|images\/|manifest\.json)/g, '$1="/$2');
+}
 
-  let body = raw;
+// Prefix internal page links (e.g. /about) with the site base (/international/about)
+// so navigation stays inside the subsite. Already-prefixed links are left untouched.
+const internalTargets = ['', '/about', '/programs', '/team', '/blog', '/parents', '/contact'];
+function prefixLinks(html, base) {
+  internalTargets.forEach(t => {
+    const re = new RegExp('href="' + (t === '' ? '/' : t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) + '"', 'g');
+    html = html.replace(re, 'href="' + base + (t === '' ? '/' : t) + '"');
+  });
+  return html;
+}
 
-  if (raw.startsWith('---')) {
-    const end = raw.indexOf('---', 3);
-    const front = raw.slice(3, end).trim();
-    front.split('\n').forEach(line => {
-      const idx = line.indexOf(':');
-      if (idx > 0) {
-        const key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim();
-        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-          val = val.slice(1, -1);
-        }
-        meta[key] = val;
-      }
-    });
-    body = raw.slice(end + 3).trim();
+sites.forEach(site => {
+  const pagesDir = path.join('src', site, 'pages');
+  const partialsDir = path.join('src', site, 'partials');
+  const outputDir = site;
+
+  if (!fs.existsSync(pagesDir)) {
+    console.log(`! Skipping ${site} (no pages directory)`);
+    return;
   }
 
-  const pageKey = file.replace('.html', '');
-  const isIndex = pageKey === 'index';
-  const slug = isIndex ? '' : pageKey;
-  const canonicalUrl = `https://ecole-integrale-agadir.pages.dev/${slug}`;
+  const header = fs.readFileSync(path.join(partialsDir, 'header.html'), 'utf-8');
+  const footer = fs.readFileSync(path.join(partialsDir, 'footer.html'), 'utf-8');
 
-  let html = header;
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
 
-  Object.entries(meta).forEach(([k, v]) => {
-    html = html.replace(new RegExp(`{{${k.toUpperCase()}}}`, 'g'), v);
+  const pageFiles = fs.readdirSync(pagesDir).filter(f => f.endsWith('.html'));
+
+  pageFiles.forEach(file => {
+    const raw = fs.readFileSync(path.join(pagesDir, file), 'utf-8');
+    const meta = {};
+    let body = raw;
+
+    if (raw.startsWith('---')) {
+      const end = raw.indexOf('---', 3);
+      const front = raw.slice(3, end).trim();
+      front.split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx > 0) {
+          const key = line.slice(0, idx).trim();
+          let val = line.slice(idx + 1).trim();
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            val = val.slice(1, -1);
+          }
+          meta[key] = val;
+        }
+      });
+      body = raw.slice(end + 3).trim();
+    }
+
+    const pageKey = file.replace('.html', '');
+    const slug = pageKey === 'index' ? site : `${site}/${pageKey}`;
+    const canonicalUrl = `https://ecole-integrale-agadir.pages.dev/${slug}`;
+
+    let html = header;
+
+    Object.entries(meta).forEach(([k, v]) => {
+      html = html.replace(new RegExp(`{{${k.toUpperCase()}}}`, 'g'), v);
+    });
+
+    html = html.replace(/{{CANONICAL_URL}}/g, canonicalUrl);
+
+    const activeKey = activeMap[pageKey] || 'ACTIVE_INDEX';
+
+    Object.values(activeMap).forEach(key => {
+      html = html.replace(new RegExp(`{{\\s*${key}\\s*}}`, 'g'), key === activeKey ? 'active' : '');
+    });
+
+    html = html.replace(/{{OG_TYPE}}/g, meta.ogtype || 'website');
+
+    html = prefixLinks(html + '\n' + body + '\n' + footer, '/' + site);
+    html = absAssets(html);
+
+    fs.writeFileSync(path.join(outputDir, file), html, 'utf-8');
+    console.log(`\u2713 Built ${site}/${file}`);
   });
-
-  html = html.replace(/{{CANONICAL_URL}}/g, canonicalUrl);
-
-  const activeKey = activeMap[pageKey] || 'ACTIVE_INDEX';
-
-  Object.values(activeMap).forEach(key => {
-    html = html.replace(new RegExp(`{{\\s*${key}\\s*}}`, 'g'), key === activeKey ? 'active' : '');
-  });
-
-  html = html.replace(/{{OG_TYPE}}/g, meta.ogtype || 'website');
-
-  html += '\n' + body + '\n' + footer;
-
-  fs.writeFileSync(path.join(outputDir, file), html, 'utf-8');
-  console.log(`\u2713 Built ${file}`);
 });
 
 // Copy admin files
