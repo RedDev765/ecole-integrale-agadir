@@ -21,7 +21,7 @@ function absAssets(html) {
 
 // Prefix internal page links (e.g. /about) with the site base (/international/about)
 // so navigation stays inside the subsite. Already-prefixed links are left untouched.
-const internalTargets = ['', '/about', '/programs', '/team', '/blog', '/parents', '/contact'];
+const internalTargets = ['/about', '/programs', '/team', '/blog', '/parents', '/contact'];
 function prefixLinks(html, base) {
   internalTargets.forEach(t => {
     const re = new RegExp('href="' + (t === '' ? '/' : t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) + '"', 'g');

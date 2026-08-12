@@ -13,7 +13,7 @@ function AbsAssets($html) {
   return $html -replace $pattern, '$1="/$2'
 }
 
-$internalTargets = @('', '/about', '/programs', '/team', '/blog', '/parents', '/contact')
+$internalTargets = @('/about', '/programs', '/team', '/blog', '/parents', '/contact')
 function PrefixLinks($html, $base) {
   foreach ($t in $internalTargets) {
     if ($t -eq '') {

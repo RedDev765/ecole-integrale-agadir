@@ -2535,3 +2535,29 @@ ul { list-style: none; }
   .feature-card, .program-card, .team-card, .blog-card,
   .parents-card { break-inside: avoid; box-shadow: none !important; border: 1px solid #ddd !important; }
 }
+
+/* ===== Return to portal button ===== */
+.portal-return {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--gold, #C9A84C);
+  color: #0A1628;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.portal-return:hover,
+.portal-return:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+  color: #0A1628;
+}
