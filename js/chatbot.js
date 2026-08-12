@@ -7,13 +7,13 @@ const chatbotHTML = `
     <div class="chatbot-header">
       <div class="chatbot-header-icon">🎓</div>
       <div class="chatbot-header-text">
-        <h4>Assistant École Intégrale</h4>
+        <h4>Assistant Intégrale International School</h4>
         <span>En ligne •🇫🇷 FR / 🇬🇧 EN</span>
       </div>
       <button class="chatbot-close" id="chatbotClose" aria-label="Fermer">✕</button>
     </div>
     <div class="chatbot-messages" id="chatbotMessages">
-      <div class="chatbot-msg bot">👋 Bonjour ! Bienvenue à l'École Intégrale. Je suis là pour répondre à vos questions. / Hello! Welcome to École Intégrale. How can I help you?</div>
+      <div class="chatbot-msg bot">👋 Bonjour ! Bienvenue à l'Intégrale International School. Je suis là pour répondre à vos questions. / Hello! Welcome to Intégrale International School. How can I help you?</div>
     </div>
     <div class="chatbot-input-area">
       <input type="text" id="chatbotInput" placeholder="Écrivez votre message..." autocomplete="off">
@@ -41,7 +41,7 @@ closeBtn.addEventListener('click', () => {
 
 const responses = {
   'bonjour': 'Bonjour ! Comment puis-je vous aider ? Voici ce que je peux vous dire :\n- 📋 Inscriptions\n- 📚 Programmes scolaires\n- 📍 Adresse et contact\n- 🕐 Horaires\nTapez un mot-clé pour commencer !',
-  'hello': 'Hello! Welcome to École Intégrale. I can help you with:\n- 📋 Registration\n- 📚 Academic programs\n- 📍 Address and contact\n- 🕐 Hours\nType a keyword to start!',
+  'hello': 'Hello! Welcome to Intégrale International School. I can help you with:\n- 📋 Registration\n- 📚 Academic programs\n- 📍 Address and contact\n- 🕐 Hours\nType a keyword to start!',
   'inscription': 'Pour inscrire votre enfant, veuillez nous contacter 📞 0528 39 08 38 ou 📧 ecole.integrale.agadir@gmail.com pour planifier une visite et retirer un dossier.',
   'registration': 'To register your child, please contact us 📞 0528 39 08 38 or 📧 ecole.integrale.agadir@gmail.com to schedule a visit.',
   'programme': 'Nous proposons un parcours complet de la Maternelle au Lycée :\n🧸 Maternelle (TPS-GS)\n📚 Primaire (CP-CM2)\n🔬 Collège (6e-3e)\n🎓 Lycée (Sciences Maths, Sciences Expé, Économie)',
@@ -53,8 +53,8 @@ const responses = {
   'contact': '📞 0528 39 08 38\n📧 ecole.integrale.agadir@gmail.com',
   'merci': '🙏 Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions. / You\'re welcome! Feel free to ask if you have more questions.',
   'thank': "🙏 You're welcome! Feel free to ask if you have more questions.",
-  'au revoir': '👋 Au revoir ! Bonne journée de la part de toute l\'équipe de l\'École Intégrale.',
-  'goodbye': '👋 Goodbye! Have a great day from all the École Intégrale team.',
+  'au revoir': '👋 Au revoir ! Bonne journée de la part de toute l\'équipe de l\'Intégrale International School.',
+  'goodbye': '👋 Goodbye! Have a great day from all the Intégrale International School team.',
 };
 
 function addMessage(text, isUser) {
