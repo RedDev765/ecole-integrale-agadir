@@ -9,7 +9,7 @@ function Write-FileUtf8($path, $content) {
 }
 
 function AbsAssets($html) {
-  $pattern = '(href|src)="(css/|js/|images/|manifest\.json)'
+  $pattern = '(href|src)="(css/|js/|images/|downloads/|manifest\.json)'
   return $html -replace $pattern, '$1="/$2'
 }
 

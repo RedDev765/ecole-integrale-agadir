@@ -16,7 +16,7 @@ const activeMap = {
 // Make relative asset references (/css, /js, /images, /manifest.json) root-absolute
 // so generated pages work from any subfolder like /international/ or /haut-founty/.
 function absAssets(html) {
-  return html.replace(/(href|src)="(css\/|js\/|images\/|manifest\.json)/g, '$1="/$2');
+  return html.replace(/(href|src)="(css\/|js\/|images\/|downloads\/|manifest\.json)/g, '$1="/$2');
 }
 
 // Prefix internal page links (e.g. /about) with the site base (/international/about)
