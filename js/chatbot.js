@@ -1,6 +1,15 @@
 // === CHATBOT 2 LANGUES (FR/EN) ===
 const schoolName = (document.querySelector('meta[property="og:site_name"]') || {}).content || 'Intégrale International School';
 
+const metaValue = (n) => { const m = document.querySelector(`meta[name="school:${n}"]`); return m ? m.content : ''; };
+const SCHOOL = {
+  phone: metaValue('phone') || '0528 39 08 38',
+  phoneHref: metaValue('phonehref') || '0528390838',
+  email: metaValue('email') || 'ecole.integrale.agadir@gmail.com',
+  address: metaValue('address') || 'CC27+3G, Agadir 80000',
+  hours: metaValue('hours') || 'Lundi - Vendredi : 8h00 - 17h00'
+};
+
 const chatbotHTML = `
   <button class="chatbot-toggle" id="chatbotToggle" aria-label="Ouvrir le chat">
     💬
@@ -44,15 +53,15 @@ closeBtn.addEventListener('click', () => {
 const responses = {
   'bonjour': 'Bonjour ! Comment puis-je vous aider ? Voici ce que je peux vous dire :\n- 📋 Inscriptions\n- 📚 Programmes scolaires\n- 📍 Adresse et contact\n- 🕐 Horaires\nTapez un mot-clé pour commencer !',
   'hello': 'Hello! Welcome to Intégrale International School. I can help you with:\n- 📋 Registration\n- 📚 Academic programs\n- 📍 Address and contact\n- 🕐 Hours\nType a keyword to start!',
-  'inscription': 'Pour inscrire votre enfant, veuillez nous contacter 📞 0528 39 08 38 ou 📧 ecole.integrale.agadir@gmail.com pour planifier une visite et retirer un dossier.',
-  'registration': 'To register your child, please contact us 📞 0528 39 08 38 or 📧 ecole.integrale.agadir@gmail.com to schedule a visit.',
-  'programme': 'Nous proposons un parcours complet de la Maternelle au Lycée :\n🧸 Maternelle (TPS-GS)\n📚 Primaire (CP-CM2)\n🔬 Collège (6e-3e)\n🎓 Lycée (Sciences Maths, Sciences Expé, Économie)',
-  'program': 'We offer a complete path from Preschool to High School:\n🧸 Preschool (TPS-GS)\n📚 Primary (CP-CM2)\n🔬 Middle School (6e-3e)\n🎓 High School (Sciences, Economics)',
-  'adresse': '📍 CC27+3G, Agadir 80000 - Maroc',
-  'address': '📍 CC27+3G, Agadir 80000 - Morocco',
-  'horaire': '🕐 Lundi - Vendredi : 8h00 - 17h00',
-  'hours': '🕐 Monday - Friday: 8:00 AM - 5:00 PM',
-  'contact': '📞 0528 39 08 38\n📧 ecole.integrale.agadir@gmail.com',
+  'inscription': `Pour inscrire votre enfant, veuillez nous contacter 📞 ${SCHOOL.phone} ou 📧 ${SCHOOL.email} pour planifier une visite et retirer un dossier.`,
+  'registration': `To register your child, please contact us 📞 ${SCHOOL.phone} or 📧 ${SCHOOL.email} to schedule a visit.`,
+  'programme': 'Nous proposons un parcours complet de la Maternelle au Collège :\n🧸 Maternelle (TPS-GS)\n📚 Primaire (CP-CM2)\n🔬 Collège (6e-3e)',
+  'program': 'We offer a complete path from Preschool to Middle School:\n🧸 Preschool (TPS-GS)\n📚 Primary (CP-CM2)\n🔬 Middle School (6e-3e)',
+  'adresse': `📍 ${SCHOOL.address}`,
+  'address': `📍 ${SCHOOL.address}`,
+  'horaire': `🕐 ${SCHOOL.hours}`,
+  'hours': `🕐 ${SCHOOL.hours}`,
+  'contact': `📞 ${SCHOOL.phone}\n📧 ${SCHOOL.email}`,
   'merci': '🙏 Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions. / You\'re welcome! Feel free to ask if you have more questions.',
   'thank': "🙏 You're welcome! Feel free to ask if you have more questions.",
   'au revoir': '👋 Au revoir ! Bonne journée de la part de toute l\'équipe de l\'Intégrale International School.',
