@@ -1,1 +1,1 @@
-# Intégrale International School — Campus Agadir Bay
+# Intégrale International School
