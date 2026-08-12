@@ -50,7 +50,8 @@ sites.forEach(site => {
   const pageFiles = fs.readdirSync(pagesDir).filter(f => f.endsWith('.html'));
 
   pageFiles.forEach(file => {
-    const raw = fs.readFileSync(path.join(pagesDir, file), 'utf-8');
+    let raw = fs.readFileSync(path.join(pagesDir, file), 'utf-8');
+    raw = raw.replace(/^\uFEFF/, ''); // strip UTF-8 BOM so front-matter parsing works
     const meta = {};
     let body = raw;
 

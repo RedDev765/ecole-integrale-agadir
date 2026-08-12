@@ -58,6 +58,7 @@ foreach ($site in $sites) {
 
   foreach ($file in $pageFiles) {
     $raw = Read-FileUtf8 $file.FullName
+    if ($raw.Length -gt 0 -and $raw[0] -eq [char]0xFEFF) { $raw = $raw.Substring(1) } # strip BOM
     $meta = @{}
     $body = $raw
 
