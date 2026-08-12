@@ -1,0 +1,9 @@
+backend:
+  name: github
+  repo: RedDev765/ecole-integrale-agadir
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections: []
