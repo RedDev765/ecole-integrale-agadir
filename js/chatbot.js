@@ -10,6 +10,8 @@ const SCHOOL = {
   hours: metaValue('hours') || 'Lundi - Vendredi : 8h00 - 17h00'
 };
 
+const isInternational = schoolName.includes('International');
+
 const chatbotHTML = `
   <button class="chatbot-toggle" id="chatbotToggle" aria-label="Ouvrir le chat">
     💬
@@ -55,8 +57,12 @@ const responses = {
   'hello': 'Hello! Welcome to Intégrale International School. I can help you with:\n- 📋 Registration\n- 📚 Academic programs\n- 📍 Address and contact\n- 🕐 Hours\nType a keyword to start!',
   'inscription': `Pour inscrire votre enfant, veuillez nous contacter 📞 ${SCHOOL.phone} ou 📧 ${SCHOOL.email} pour planifier une visite et retirer un dossier.`,
   'registration': `To register your child, please contact us 📞 ${SCHOOL.phone} or 📧 ${SCHOOL.email} to schedule a visit.`,
-  'programme': 'Nous proposons un parcours complet de la Maternelle au Collège :\n🧸 Maternelle (TPS-GS)\n📚 Primaire (CP-CM2)\n🔬 Collège (6e-3e)',
-  'program': 'We offer a complete path from Preschool to Middle School:\n🧸 Preschool (TPS-GS)\n📚 Primary (CP-CM2)\n🔬 Middle School (6e-3e)',
+  'programme': isInternational
+    ? 'Nous proposons un parcours complet de la Maternelle au Lycée :\n🧸 Maternelle (TPS-GS)\n📚 Primaire (CP-CM2)\n🔬 Collège (6e-3e)\n🎓 Lycée (filières Sciences Maths, Sciences Expérimentales, Économie)'
+    : 'Nous proposons un parcours complet de la Maternelle au Collège :\n🧸 Maternelle (TPS-GS)\n📚 Primaire (CP-CM2)\n🔬 Collège (6e-3e)',
+  'program': isInternational
+    ? 'We offer a complete path from Preschool to High School:\n🧸 Preschool (TPS-GS)\n📚 Primary (CP-CM2)\n🔬 Middle School (6e-3e)\n🎓 High School (Sciences Maths, Sciences Expérimentales, Economics)'
+    : 'We offer a complete path from Preschool to Middle School:\n🧸 Preschool (TPS-GS)\n📚 Primary (CP-CM2)\n🔬 Middle School (6e-3e)',
   'adresse': `📍 ${SCHOOL.address}`,
   'address': `📍 ${SCHOOL.address}`,
   'horaire': `🕐 ${SCHOOL.hours}`,

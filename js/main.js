@@ -211,8 +211,10 @@ if (oldParticles) {
     particles.forEach((p, i) => {
       p.x += p.vx + mouse.x * 0.04;
       p.y += p.vy + mouse.y * 0.04;
-      if (p.x < 0 || p.x > 100) p.vx *= -1;
-      if (p.y < 0 || p.y > 100) p.vy *= -1;
+      if (p.x <= 0) { p.x = 0; p.vx = Math.abs(p.vx); }
+      else if (p.x >= 100) { p.x = 100; p.vx = -Math.abs(p.vx); }
+      if (p.y <= 0) { p.y = 0; p.vy = Math.abs(p.vy); }
+      else if (p.y >= 100) { p.y = 100; p.vy = -Math.abs(p.vy); }
       p.el.style.left = p.x + '%';
       p.el.style.top = p.y + '%';
 
