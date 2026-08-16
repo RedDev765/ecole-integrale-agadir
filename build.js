@@ -76,7 +76,7 @@ sites.forEach(site => {
     const slug = pageKey === 'index' ? site : `${site}/${pageKey}`;
     const canonicalUrl = `https://ecole-integrale-agadir.pages.dev/${slug}`;
 
-    let html = header;
+    let html = header.replace('<html lang="fr">', `<html lang="fr" data-site="${site}">`);
 
     Object.entries(meta).forEach(([k, v]) => {
       html = html.replace(new RegExp(`{{${k.toUpperCase()}}}`, 'g'), v);

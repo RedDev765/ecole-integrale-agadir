@@ -24,6 +24,7 @@
   --gold: #C9A84C;
   --gold-light: #E8D48B;
   --gold-shimmer: #F0E0A0;
+  --gold-rgb: 201, 168, 76;
   --green-dot: #4ADE80;
   --border: rgba(10, 22, 40, 0.08);
   --border-light: rgba(255,255,255,0.12);
@@ -45,6 +46,22 @@
   --transition-fast: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-smooth: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* === Per-establishment theming (Groupe Intégrale) ===
+   International keeps the default navy + gold brand above.
+   Haut Founty gets a distinct teal/emerald identity. */
+[data-site="haut-founty"] {
+  --gold: #2BB89C;
+  --gold-light: #6FD9C2;
+  --gold-shimmer: #B8F0E4;
+  --gold-rgb: 43, 184, 156;
+  --accent-blue: #1E8A7A;
+  --accent-rich: #25A593;
+  --blue-glow: #2BB89C;
+  --light-blue: #D6F0EA;
+  --shadow-glow: 0 0 40px rgba(43, 184, 156, 0.15);
+  --shadow-gold: 0 8px 40px rgba(43, 184, 156, 0.2);
 }
 
 html {
@@ -429,7 +446,7 @@ ul { list-style: none; }
 .btn-primary {
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
   color: var(--primary-dark);
-  box-shadow: 0 8px 30px rgba(201,168,76,0.25);
+  box-shadow: 0 8px 30px rgba(var(--gold-rgb),0.25);
 }
 
 .btn-primary::before {
@@ -445,7 +462,7 @@ ul { list-style: none; }
 
 .btn-primary:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 16px 50px rgba(201,168,76,0.35);
+  box-shadow: 0 16px 50px rgba(var(--gold-rgb),0.35);
 }
 
 .btn-outline {
@@ -762,7 +779,7 @@ ul { list-style: none; }
 }
 
 .section-light .feature-card::after {
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201,168,76,0.04), transparent 60%);
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(var(--gold-rgb),0.04), transparent 60%);
 }
 
 /* ===== ABOUT ===== */
@@ -1085,7 +1102,7 @@ ul { list-style: none; }
 
 .team-card:hover .team-avatar {
   transform: scale(1.08) rotate(-5deg);
-  box-shadow: 0 8px 30px rgba(201,168,76,0.25);
+  box-shadow: 0 8px 30px rgba(var(--gold-rgb),0.25);
 }
 
 .team-card h4 {
@@ -1216,7 +1233,7 @@ ul { list-style: none; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(201,168,76,0.04) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(var(--gold-rgb),0.04) 0%, transparent 70%);
 }
 
 .cta-section .container { position: relative; z-index: 1; }
@@ -2033,7 +2050,7 @@ ul { list-style: none; }
 .theme-toggle:hover {
   background: rgba(255,255,255,0.15);
   transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(201,168,76,0.2);
+  box-shadow: 0 4px 16px rgba(var(--gold-rgb),0.2);
 }
 
 
@@ -2105,14 +2122,14 @@ ul { list-style: none; }
   border-radius: 50%;
   background: var(--gold);
   border: 4px solid var(--primary);
-  box-shadow: 0 0 0 4px rgba(201,168,76,0.2);
+  box-shadow: 0 0 0 4px rgba(var(--gold-rgb),0.2);
   z-index: 2;
   transition: var(--transition-bounce);
 }
 
 .timeline-step:hover .timeline-dot {
   transform: scale(1.3);
-  box-shadow: 0 0 0 8px rgba(201,168,76,0.15);
+  box-shadow: 0 0 0 8px rgba(var(--gold-rgb),0.15);
 }
 
 .timeline-line {
@@ -2236,7 +2253,7 @@ ul { list-style: none; }
   justify-content: center;
   font-size: 1.5rem;
   border: 2px solid var(--gold);
-  box-shadow: 0 4px 20px rgba(201,168,76,0.15);
+  box-shadow: 0 4px 20px rgba(var(--gold-rgb),0.15);
   position: relative;
   z-index: 1;
   transition: var(--transition-bounce);
@@ -2244,7 +2261,7 @@ ul { list-style: none; }
 
 .day-step:hover .day-icon {
   transform: scale(1.1);
-  box-shadow: 0 8px 30px rgba(201,168,76,0.25);
+  box-shadow: 0 8px 30px rgba(var(--gold-rgb),0.25);
 }
 
 .day-content {

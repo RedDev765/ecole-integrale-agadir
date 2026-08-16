@@ -197,6 +197,8 @@ if (oldParticles) {
   oldParticles.appendChild(canvas);
   const ctx = canvas.getContext('2d');
 
+  const goldRgb = (getComputedStyle(document.documentElement).getPropertyValue('--gold-rgb').trim() || '201,168,76');
+
   function resizeCanvas() {
     canvas.width = oldParticles.offsetWidth;
     canvas.height = oldParticles.offsetHeight;
@@ -224,7 +226,7 @@ if (oldParticles) {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 150) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(201,168,76,${0.15 * (1 - dist / 150)})`;
+          ctx.strokeStyle = `rgba(${goldRgb},${0.15 * (1 - dist / 150)})`;
           ctx.lineWidth = 1;
           ctx.moveTo(p.x * w, p.y * h);
           ctx.lineTo(p2.x * w, p2.y * h);
