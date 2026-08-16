@@ -263,31 +263,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// === AUDIO WELCOME (plays on first interaction) ===
-(function playWelcomeOnInteraction() {
-  let played = false;
-  function playMelody() {
-    if (played) return;
-    played = true;
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const now = ctx.currentTime;
-      const notes = [261.63, 329.63, 392.00, 523.25];
-      notes.forEach((freq, i) => {
-        const o = ctx.createOscillator();
-        const g = ctx.createGain();
-        o.type = 'sine';
-        o.frequency.value = freq;
-        g.gain.setValueAtTime(0, now + i * 0.3);
-        g.gain.linearRampToValueAtTime(0.12, now + i * 0.3 + 0.05);
-        g.gain.linearRampToValueAtTime(0, now + i * 0.3 + 0.25);
-        o.connect(g);
-        g.connect(ctx.destination);
-        o.start(now + i * 0.3);
-        o.stop(now + i * 0.3 + 0.3);
-      });
-    } catch(e) {}
-  }
-  document.addEventListener('click', playMelody, { once: true });
-  document.addEventListener('touchstart', playMelody, { once: true });
-})();
+

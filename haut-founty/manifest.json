@@ -1,0 +1,25 @@
+{
+  "name": "Groupe Intégrale",
+  "short_name": "Intégrale",
+  "description": "Groupe scolaire privé à Agadir : Intégrale International School et Campus Haut Founty, de la Maternelle au Lycée.",
+  "start_url": "/haut-founty/",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#0A1628",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "scope": "/haut-founty/"
+}

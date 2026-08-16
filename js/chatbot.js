@@ -20,7 +20,7 @@ const chatbotHTML = `
       <div class="chatbot-header-icon">🎓</div>
       <div class="chatbot-header-text">
         <h4>Assistant ${schoolName}</h4>
-        <span>En ligne •🇫🇷 FR / 🇬🇧 EN</span>
+        <span>En ligne • Réponses en 🇫🇷 FR / 🇬🇧 EN</span>
       </div>
       <button class="chatbot-close" id="chatbotClose" aria-label="Fermer">✕</button>
     </div>

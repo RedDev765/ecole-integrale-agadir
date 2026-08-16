@@ -84,7 +84,7 @@ sites.forEach(site => {
 
     html = html.replace(/{{CANONICAL_URL}}/g, canonicalUrl);
 
-    const activeKey = activeMap[pageKey] || 'ACTIVE_INDEX';
+    const activeKey = activeMap[pageKey] || '';
 
     Object.values(activeMap).forEach(key => {
       html = html.replace(new RegExp(`{{\\s*${key}\\s*}}`, 'g'), key === activeKey ? 'active' : '');
@@ -97,10 +97,24 @@ sites.forEach(site => {
     // The portal-return link (class="portal-return") is left untouched.
     html = html.replace(/<a href="\/">Accueil<\/a>/g, `<a href="/${site}/">Accueil</a>`);
     html = absAssets(html);
+    // Point the web app manifest to the current subsite so an installed PWA
+    // opens the right site instead of the portal root.
+    html = html.replace('href="/manifest.json"', `href="/${site}/manifest.json"`);
 
     fs.writeFileSync(path.join(outputDir, file), html, 'utf-8');
     console.log(`\u2713 Built ${site}/${file}`);
   });
+
+  // Generate a per-site manifest so the PWA opens the correct subsite.
+  const rootManifest = JSON.parse(fs.readFileSync('manifest.json', 'utf-8'));
+  const siteManifest = {
+    ...rootManifest,
+    start_url: `/${site}/`,
+    scope: `/${site}/`,
+    icons: (rootManifest.icons || []).map(icon => ({ ...icon, src: '/images/logo.jpg' })),
+  };
+  fs.writeFileSync(path.join(outputDir, 'manifest.json'), JSON.stringify(siteManifest, null, 2), 'utf-8');
+  console.log(`\u2713 Built ${site}/manifest.json`);
 });
 
 // Copy admin files
