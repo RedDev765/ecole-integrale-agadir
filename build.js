@@ -93,6 +93,9 @@ sites.forEach(site => {
     html = html.replace(/{{OG_TYPE}}/g, meta.ogtype || 'website');
 
     html = prefixLinks(html + '\n' + body + '\n' + footer, '/' + site);
+    // Breadcrumb "Accueil" should point to the subsite home, not the portal root.
+    // The portal-return link (class="portal-return") is left untouched.
+    html = html.replace(/<a href="\/">Accueil<\/a>/g, `<a href="/${site}/">Accueil</a>`);
     html = absAssets(html);
 
     fs.writeFileSync(path.join(outputDir, file), html, 'utf-8');

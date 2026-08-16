@@ -4,7 +4,6 @@ const schoolName = (document.querySelector('meta[property="og:site_name"]') || {
 const metaValue = (n) => { const m = document.querySelector(`meta[name="school:${n}"]`); return m ? m.content : ''; };
 const SCHOOL = {
   phone: metaValue('phone') || '0528 39 08 38',
-  phoneHref: metaValue('phonehref') || '0528390838',
   email: metaValue('email') || 'ecole.integrale.agadir@gmail.com',
   address: metaValue('address') || 'CC27+3G, Agadir 80000',
   hours: metaValue('hours') || 'Lundi - Vendredi : 8h00 - 17h00'
@@ -54,7 +53,7 @@ closeBtn.addEventListener('click', () => {
 
 const responses = {
   'bonjour': 'Bonjour ! Comment puis-je vous aider ? Voici ce que je peux vous dire :\n- 📋 Inscriptions\n- 📚 Programmes scolaires\n- 📍 Adresse et contact\n- 🕐 Horaires\nTapez un mot-clé pour commencer !',
-  'hello': 'Hello! Welcome to Intégrale International School. I can help you with:\n- 📋 Registration\n- 📚 Academic programs\n- 📍 Address and contact\n- 🕐 Hours\nType a keyword to start!',
+  'hello': `Hello! Welcome to ${schoolName}. I can help you with:\n- 📋 Registration\n- 📚 Academic programs\n- 📍 Address and contact\n- 🕐 Hours\nType a keyword to start!`,
   'inscription': `Pour inscrire votre enfant, veuillez nous contacter 📞 ${SCHOOL.phone} ou 📧 ${SCHOOL.email} pour planifier une visite et retirer un dossier.`,
   'registration': `To register your child, please contact us 📞 ${SCHOOL.phone} or 📧 ${SCHOOL.email} to schedule a visit.`,
   'programme': isInternational
@@ -70,8 +69,8 @@ const responses = {
   'contact': `📞 ${SCHOOL.phone}\n📧 ${SCHOOL.email}`,
   'merci': '🙏 Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions. / You\'re welcome! Feel free to ask if you have more questions.',
   'thank': "🙏 You're welcome! Feel free to ask if you have more questions.",
-  'au revoir': '👋 Au revoir ! Bonne journée de la part de toute l\'équipe de l\'Intégrale International School.',
-  'goodbye': '👋 Goodbye! Have a great day from all the Intégrale International School team.',
+  'au revoir': `👋 Au revoir ! Bonne journée de la part de toute l'équipe de ${schoolName}.`,
+  'goodbye': `👋 Goodbye! Have a great day from all the ${schoolName} team.`,
 };
 
 function addMessage(text, isUser) {

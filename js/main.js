@@ -124,11 +124,11 @@ function animateCounter(el) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
     current = Math.round(progress * target);
-    el.textContent = current + (suffix ? ' ' + suffix : '');
+    el.textContent = current + suffix;
     if (progress < 1) {
       requestAnimationFrame(update);
     } else {
-      el.textContent = target + (suffix ? ' ' + suffix : '');
+      el.textContent = target + suffix;
     }
   }
   requestAnimationFrame(update);
