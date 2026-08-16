@@ -49,19 +49,28 @@
 }
 
 /* === Per-establishment theming (Groupe Intégrale) ===
-   International keeps the default navy + gold brand above.
-   Haut Founty gets a distinct teal/emerald identity. */
+   Both sites share the same navy + gold brand palette.
+   Haut Founty is differentiated by its DESIGN TREATMENT only:
+   a more structured/modern feel (sharper corners), a flipped hero
+   gradient, a gold top bar on the header and reversed section gradients. */
 [data-site="haut-founty"] {
-  --gold: #2BB89C;
-  --gold-light: #6FD9C2;
-  --gold-shimmer: #B8F0E4;
-  --gold-rgb: 43, 184, 156;
-  --accent-blue: #1E8A7A;
-  --accent-rich: #25A593;
-  --blue-glow: #2BB89C;
-  --light-blue: #D6F0EA;
-  --shadow-glow: 0 0 40px rgba(43, 184, 156, 0.15);
-  --shadow-gold: 0 8px 40px rgba(43, 184, 156, 0.2);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+}
+
+[data-site="haut-founty"] .header {
+  border-top: 3px solid var(--gold);
+}
+
+[data-site="haut-founty"] .hero {
+  background: linear-gradient(200deg, var(--primary-dark) 0%, #1a3a5c 25%, var(--accent-blue) 65%, var(--primary) 100%);
+}
+
+[data-site="haut-founty"] .section-blue {
+  background: linear-gradient(200deg, var(--accent-blue), var(--primary));
 }
 
 html {
