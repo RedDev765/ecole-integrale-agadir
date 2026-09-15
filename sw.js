@@ -1,4 +1,4 @@
-const CACHE = 'ecole-integrale-v4';
+const CACHE = 'ecole-integrale-v5';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
