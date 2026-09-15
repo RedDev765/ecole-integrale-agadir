@@ -183,6 +183,8 @@ ul { list-style: none; }
   width: auto;
   flex-shrink: 0;
   border-radius: 12px;
+  padding: 6px;
+  background: #fff;
   transition: var(--transition-bounce);
 }
 
@@ -1532,6 +1534,8 @@ ul { list-style: none; }
   height: 44px;
   width: auto;
   border-radius: 10px;
+  padding: 5px;
+  background: #fff;
   margin-bottom: 16px;
 }
 
