@@ -99,7 +99,7 @@ revealElements.forEach(el => {
 });
 
 // === TIMELINE SCROLL REVEAL ===
-document.querySelectorAll('.timeline-step, .day-step').forEach((el, i) => {
+document.querySelectorAll('.timeline-step, .day-step, .step-h').forEach((el, i) => {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
