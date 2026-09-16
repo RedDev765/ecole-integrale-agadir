@@ -8,7 +8,6 @@ const activeMap = {
   'about': 'ACTIVE_ABOUT',
   'informations': 'ACTIVE_INFORMATIONS',
   'programs': 'ACTIVE_PROGRAMS',
-  'team': 'ACTIVE_TEAM',
   'inscription': 'ACTIVE_INSCRIPTION',
   'contact': 'ACTIVE_CONTACT',
 };
@@ -21,7 +20,7 @@ function absAssets(html) {
 
 // Prefix internal page links (e.g. /about) with the site base (/international/about)
 // so navigation stays inside the subsite. Already-prefixed links are left untouched.
-const internalTargets = ['/about', '/informations', '/programs', '/team', '/inscription', '/contact'];
+const internalTargets = ['/about', '/informations', '/programs', '/inscription', '/contact'];
 function prefixLinks(html, base) {
   internalTargets.forEach(t => {
     const re = new RegExp('href="' + (t === '' ? '/' : t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) + '"', 'g');
