@@ -1,0 +1,4 @@
+# Cache désactivé : le navigateur (et le CDN) ne stockent rien,
+# chaque visite recharge les fichiers à jour.
+/*
+  Cache-Control: no-store
