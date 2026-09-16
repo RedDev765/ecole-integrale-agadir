@@ -79,6 +79,11 @@ document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card,
   el.classList.add('reveal');
   trackReveal(el, `${i * 0.1}s`);
 });
+// FAQ : apparition en cascade au scroll
+document.querySelectorAll('.faq-item').forEach((el, i) => {
+  el.classList.add('reveal');
+  trackReveal(el, `${i * 0.06}s`);
+});
 document.querySelectorAll('.about-grid .about-content').forEach(el => { el.classList.add('reveal-left'); trackReveal(el); });
 document.querySelectorAll('.about-grid .about-image-wrap, .about-grid .about-image').forEach(el => { el.classList.add('reveal-right'); trackReveal(el); });
 
