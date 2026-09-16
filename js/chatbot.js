@@ -3,9 +3,9 @@ const schoolName = (document.querySelector('meta[property="og:site_name"]') || {
 
 const metaValue = (n) => { const m = document.querySelector(`meta[name="school:${n}"]`); return m ? m.content : ''; };
 const SCHOOL = {
-  phone: metaValue('phone') || '0528 39 08 38',
+  phone: metaValue('phone') || '+212 5 28 39 08 38',
   email: metaValue('email') || 'ecole.integrale.agadir@gmail.com',
-  address: metaValue('address') || 'CC27+3G, Agadir 80000',
+  address: metaValue('address') || 'G04 Agadir bay founty, Agadir, Morocco 80000 (CC27+3G)',
   hours: metaValue('hours') || 'Lundi - Vendredi : 8h00 - 17h00'
 };
 
