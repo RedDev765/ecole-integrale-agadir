@@ -2106,6 +2106,15 @@ ul { list-style: none; }
 [data-theme="dark"] .testimonial-stars { color: var(--gold); }
 [data-theme="dark"] .blog-card-body h3 { color: var(--text-dark); }
 [data-theme="dark"] .blog-card-body p { color: var(--text-gray); }
+
+/* Steps horizontaux (Inscription) : titres et textes clairs en dark mode */
+[data-theme="dark"] .step-h { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .step-h h3 { color: #E8ECF1; }
+[data-theme="dark"] .step-h p { color: rgba(232,236,241,0.65); }
+
+/* Sécurité : program-card hors section-light (titre clair en dark mode) */
+[data-theme="dark"] .program-card h3 { color: var(--text-dark); }
+[data-theme="dark"] .program-card p { color: var(--text-gray); }
 [data-theme="dark"] .blog-card-body .date { color: var(--text-light); }
 [data-theme="dark"] .date-tag { background: var(--gold); color: var(--primary-dark); }
 
