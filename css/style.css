@@ -181,10 +181,13 @@ ul { list-style: none; }
 .logo-img {
   height: 48px;
   width: auto;
+  max-width: 160px;
   flex-shrink: 0;
   border-radius: 12px;
   padding: 6px;
   background: #fff;
+  object-fit: contain;
+  object-position: center;
   transition: var(--transition-bounce);
 }
 
@@ -548,13 +551,14 @@ ul { list-style: none; }
   width: 100%;
   aspect-ratio: 4/3;
   border-radius: 24px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.05);
 }
 
 
@@ -1563,9 +1567,12 @@ ul { list-style: none; }
 .footer-brand .logo-img-sm {
   height: 44px;
   width: auto;
+  max-width: 140px;
   border-radius: 10px;
   padding: 5px;
   background: #fff;
+  object-fit: contain;
+  object-position: center;
   margin-bottom: 16px;
 }
 
