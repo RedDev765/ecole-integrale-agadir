@@ -647,6 +647,17 @@ ul { list-style: none; }
   background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
   border-radius: 2px;
   margin: 20px auto 0;
+  box-shadow: 0 1px 4px rgba(19, 58, 102, 0.4);
+}
+
+/* ===== Contraste du jaune #F9DA2F sur fonds clairs : ombre portée ===== */
+.section-header .overline,
+.section-light .program-card .level,
+.team-card .role,
+.day-time,
+.timeline-level,
+.testimonial-stars {
+  text-shadow: 0 1px 3px rgba(19, 58, 102, 0.45);
 }
 
 .section-blue-light {
