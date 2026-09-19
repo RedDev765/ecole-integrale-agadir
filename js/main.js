@@ -202,7 +202,7 @@ if (oldParticles) {
   oldParticles.appendChild(canvas);
   const ctx = canvas.getContext('2d');
 
-  const goldRgb = (getComputedStyle(document.documentElement).getPropertyValue('--gold-rgb').trim() || '201,168,76');
+  const goldRgb = (getComputedStyle(document.documentElement).getPropertyValue('--gold-rgb').trim() || '249,218,47');
 
   function resizeCanvas() {
     canvas.width = oldParticles.offsetWidth;
