@@ -143,8 +143,9 @@ const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       animateCounter(entry.target);
-      const ring = entry.target.closest('.stat-item')?.querySelector('.stat-ring-fill');
-      if (ring) ring.classList.add('animate');
+      // Barre de progression : la largeur vient de data-progress sur .stat-item
+      const fill = entry.target.closest('.stat-item')?.querySelector('.stat-bar-fill');
+      if (fill) fill.style.width = (fill.dataset.progress || 100) + '%';
       counterObserver.unobserve(entry.target);
     }
   });
@@ -152,19 +153,15 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.stat-number').forEach(el => {
   const statItem = el.closest('.stat-item');
-  if (statItem && !statItem.querySelector('.stat-ring')) {
-    const ringSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    ringSvg.setAttribute('viewBox', '0 0 48 48');
-    ringSvg.classList.add('stat-ring');
-    const bgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    bgCircle.setAttribute('cx', '24'); bgCircle.setAttribute('cy', '24'); bgCircle.setAttribute('r', '20');
-    bgCircle.classList.add('stat-ring-bg');
-    const fillCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    fillCircle.setAttribute('cx', '24'); fillCircle.setAttribute('cy', '24'); fillCircle.setAttribute('r', '20');
-    fillCircle.classList.add('stat-ring-fill');
-    ringSvg.appendChild(bgCircle);
-    ringSvg.appendChild(fillCircle);
-    statItem.appendChild(ringSvg);
+  if (statItem && !statItem.querySelector('.stat-bar')) {
+    const bar = document.createElement('div');
+    bar.className = 'stat-bar';
+    bar.setAttribute('aria-hidden', 'true');
+    const fill = document.createElement('span');
+    fill.className = 'stat-bar-fill';
+    fill.dataset.progress = statItem.dataset.progress || '100';
+    bar.appendChild(fill);
+    statItem.appendChild(bar);
   }
   counterObserver.observe(el);
 });
