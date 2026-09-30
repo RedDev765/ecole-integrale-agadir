@@ -66,7 +66,7 @@
 }
 
 [data-site="haut-founty"] .hero {
-  background: linear-gradient(200deg, rgba(19, 58, 102, 0.55) 0%, rgba(26, 58, 92, 0.5) 25%, rgba(46, 115, 187, 0.45) 65%, rgba(30, 90, 157, 0.55) 100%), url('/images/fount-campus.jpeg') center / contain no-repeat;
+  background: linear-gradient(200deg, rgba(19, 58, 102, 0.88) 0%, rgba(26, 58, 92, 0.82) 25%, rgba(46, 115, 187, 0.78) 65%, rgba(30, 90, 157, 0.86) 100%), url('/images/fount-campus.jpeg') center / cover no-repeat;
   background-color: #133A66;
 }
 
@@ -341,7 +341,7 @@ ul { list-style: none; }
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(170deg, rgba(19, 58, 102, 0.55) 0%, rgba(30, 90, 157, 0.5) 30%, rgba(46, 115, 187, 0.45) 70%, rgba(26, 58, 92, 0.55) 100%), url('/images/int-campus.jpeg') center / contain no-repeat;
+  background: linear-gradient(170deg, rgba(19, 58, 102, 0.88) 0%, rgba(30, 90, 157, 0.82) 30%, rgba(46, 115, 187, 0.78) 70%, rgba(26, 58, 92, 0.86) 100%), url('/images/int-campus.jpeg') center / cover no-repeat;
   background-color: #133A66;
   color: var(--white);
   position: relative;
@@ -421,6 +421,7 @@ ul { list-style: none; }
   margin-bottom: 24px;
   letter-spacing: -2px;
   font-family: 'Playfair Display', serif;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
   animation: fadeInUp 1s ease 0.4s both;
 }
 
@@ -440,11 +441,12 @@ ul { list-style: none; }
 
 .hero-content .subtitle {
   font-size: 1.1rem;
-  opacity: 0.85;
+  opacity: 0.95;
   margin-bottom: 36px;
   max-width: 520px;
   line-height: 1.9;
-  font-weight: 300;
+  font-weight: 400;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
   animation: fadeInUp 1s ease 0.6s both;
 }
 
@@ -553,14 +555,12 @@ ul { list-style: none; }
   width: 100%;
   aspect-ratio: 4/3;
   border-radius: 24px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(4px);
-  background: rgba(255,255,255,0.05);
 }
 
 
@@ -924,7 +924,7 @@ ul { list-style: none; }
   width: 100%;
   aspect-ratio: 4/3;
   border-radius: var(--radius-xl);
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
@@ -2031,7 +2031,7 @@ ul { list-style: none; }
 .photo-grid img {
   width: 100%;
   height: 240px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
   border-radius: var(--radius-lg);
@@ -2056,7 +2056,7 @@ ul { list-style: none; }
 .img-card img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   border-radius: var(--radius-lg);
 }
