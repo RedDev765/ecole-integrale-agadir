@@ -66,7 +66,8 @@
 }
 
 [data-site="haut-founty"] .hero {
-  background: linear-gradient(200deg, rgba(19, 58, 102, 0.93) 0%, rgba(26, 58, 92, 0.87) 25%, rgba(46, 115, 187, 0.83) 65%, rgba(30, 90, 157, 0.9) 100%), url('/images/fount-campus.jpeg') center / cover no-repeat;
+  background: linear-gradient(200deg, rgba(19, 58, 102, 0.55) 0%, rgba(26, 58, 92, 0.5) 25%, rgba(46, 115, 187, 0.45) 65%, rgba(30, 90, 157, 0.55) 100%), url('/images/fount-campus.jpeg') center / contain no-repeat;
+  background-color: #133A66;
 }
 
 [data-site="haut-founty"] .section-blue {
@@ -340,7 +341,8 @@ ul { list-style: none; }
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(170deg, rgba(19, 58, 102, 0.93) 0%, rgba(30, 90, 157, 0.87) 30%, rgba(46, 115, 187, 0.83) 70%, rgba(26, 58, 92, 0.9) 100%), url('/images/int-campus.jpeg') center / cover no-repeat;
+  background: linear-gradient(170deg, rgba(19, 58, 102, 0.55) 0%, rgba(30, 90, 157, 0.5) 30%, rgba(46, 115, 187, 0.45) 70%, rgba(26, 58, 92, 0.55) 100%), url('/images/int-campus.jpeg') center / contain no-repeat;
+  background-color: #133A66;
   color: var(--white);
   position: relative;
   overflow: hidden;
@@ -926,22 +928,6 @@ ul { list-style: none; }
   object-position: center;
   display: block;
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-}
-
-.about-image-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -16px;
-  border: 2px solid var(--gold);
-  border-radius: calc(var(--radius-xl) + 16px);
-  z-index: -1;
-  opacity: 0.2;
-  animation: borderPulse 4s ease-in-out infinite;
-}
-
-@keyframes borderPulse {
-  0%, 100% { opacity: 0.15; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(1.02); }
 }
 
 .about-text h2 {
