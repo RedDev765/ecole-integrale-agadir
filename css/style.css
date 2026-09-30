@@ -931,7 +931,6 @@ ul { list-style: none; }
   object-position: center;
   display: block;
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-  background: var(--off-white);
 }
 
 .about-text h2 {
@@ -2039,7 +2038,6 @@ ul { list-style: none; }
   object-position: center;
   display: block;
   border-radius: var(--radius-lg);
-  background: var(--off-white);
 }
 
 .photo-grid figcaption {
@@ -2681,7 +2679,6 @@ ul { list-style: none; }
   object-position: center;
   display: block;
   border-radius: 14px;
-  background: rgba(255,255,255,0.04);
 }
 
 .timeline-card figcaption {
