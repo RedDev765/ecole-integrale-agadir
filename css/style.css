@@ -1899,10 +1899,7 @@ ul { list-style: none; }
   width: 100%;
   max-width: 240px;
   margin: 0 auto;
-  aspect-ratio: 4 / 5;
   height: auto;
-  object-fit: cover;
-  object-position: center;
   display: block;
   border-radius: 20px;
 }
@@ -2081,9 +2078,7 @@ ul { list-style: none; }
 
 .event-gallery img {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
   border-radius: 0;
   transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2721,10 +2716,9 @@ ul { list-style: none; }
 .timeline-photo {
   width: auto;
   max-width: 100%;
-  height: 220px;
+  height: auto;
+  max-height: 220px;
   margin: 0 auto;
-  object-fit: cover;
-  object-position: center;
   display: block;
   border-radius: 20px;
 }
@@ -3123,3 +3117,109 @@ ul { list-style: none; }
   font-size: 0.92rem;
 }
 .hours-list li span:last-child { color: var(--gold-light, #FDEA6E); font-weight: 600; }
+
+/* ===== Variantes de cartes =====
+   Un seul gabarit pour 134 cartes donnait un rythme mécanique.
+   Trois traitements, choisis selon le contenu de la section :
+   --row   : énumérations -> liste éditoriale à filets (documents, valeurs, communauté)
+   --num   : suites ordonnées -> pastille numérotée à la place de l'icône (parcours)
+   --photo : cartes illustrées -> image pleine largeur en tête (services, activités) */
+
+.features-grid--row {
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 0 48px;
+}
+
+.features-grid--row .feature-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 18px;
+  align-content: start;
+  padding: 22px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.section-light .features-grid--row .feature-card { border-bottom-color: var(--border); }
+
+.features-grid--row .feature-card .feature-icon {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  margin-bottom: 0;
+}
+
+.features-grid--row .feature-card h3 { grid-column: 2; font-size: 1.05rem; margin-bottom: 6px; }
+.features-grid--row .feature-card p { grid-column: 2; font-size: 0.88rem; }
+
+.features-grid--row .feature-card::before,
+.features-grid--row .feature-card::after { display: none; }
+
+.features-grid--row .feature-card:hover {
+  transform: none;
+  box-shadow: none;
+  border-bottom-color: var(--gold);
+}
+
+/* --- variante numerotee : le chiffre prend la place du pictogramme --- */
+.features-grid--num { counter-reset: carte; }
+.features-grid--num .feature-card { counter-increment: carte; }
+
+.features-grid--num .feature-card .feature-icon {
+  background: rgba(var(--gold-rgb), 0.1);
+  border-color: rgba(var(--gold-rgb), 0.35);
+}
+
+.features-grid--num .feature-card .feature-icon::before {
+  content: counter(carte, decimal-leading-zero);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--gold);
+  text-shadow: 0 1px 3px rgba(19, 58, 102, 0.45);
+}
+
+.features-grid--num .feature-card .feature-icon svg { display: none; }
+
+/* --- variante photo : l'image ouvre la carte, le contenu est en retrait --- */
+.features-grid--photo .feature-card {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 0 30px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+/* l'image est en fin de balisage : on la remonte en tête de carte */
+.features-grid--photo .feature-card img {
+  order: -1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  margin: -26px 0 24px;
+  transition: transform 0.6s ease;
+}
+
+.features-grid--photo .feature-card:hover img { transform: scale(1.03); }
+
+.features-grid--photo .feature-card .feature-icon,
+.features-grid--photo .feature-card h3,
+.features-grid--photo .feature-card p { margin-left: 32px; margin-right: 32px; }
+
+.features-grid--photo .feature-card .feature-icon { margin-bottom: 20px; }
+.features-grid--photo .feature-card h3 { margin-bottom: 8px; }
+
+.features-grid--photo .feature-card::before,
+.features-grid--photo .feature-card::after { display: none; }
+
+.features-grid--photo .feature-card:hover { transform: none; box-shadow: none; }
