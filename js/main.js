@@ -51,18 +51,16 @@ if (themeToggle) {
   const saved = localStorage.getItem('theme');
   if (saved === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-    themeToggle.textContent = '☀️';
   }
+  // Les icônes lune/soleil sont dans le HTML : on ne bascule que data-theme.
   themeToggle.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     if (isDark) {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('theme', 'light');
-      themeToggle.textContent = '🌙';
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
-      themeToggle.textContent = '☀️';
     }
   });
 }
@@ -75,7 +73,7 @@ function trackReveal(el, delay) {
   revealElements.push(el);
 }
 
-document.querySelectorAll('.feature-card, .program-card, .team-card, .blog-card, .testimonial-card, .section-header, .contact-grid > div').forEach((el, i) => {
+document.querySelectorAll('.feature-card, .program-card, .testimonial-card, .section-header, .contact-grid > div').forEach((el, i) => {
   el.classList.add('reveal');
   trackReveal(el, `${i * 0.1}s`);
 });
@@ -165,81 +163,6 @@ document.querySelectorAll('.stat-number').forEach(el => {
   }
   counterObserver.observe(el);
 });
-
-// === HERO INTERACTIVE PARTICLES ===
-const oldParticles = document.querySelector('.hero-particles');
-if (oldParticles) {
-  oldParticles.innerHTML = '';
-
-  const particles = [];
-  const mouse = { x: 0, y: 0 };
-
-  document.addEventListener('mousemove', (e) => {
-    const rect = oldParticles.getBoundingClientRect();
-    mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    mouse.y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-  });
-
-  for (let i = 0; i < 30; i++) {
-    const p = {
-      x: Math.random() * 100, y: Math.random() * 100,
-      vx: (Math.random() - 0.5) * 0.6, vy: (Math.random() - 0.5) * 0.6,
-      size: 2 + Math.random() * 4, el: null
-    };
-    const el = document.createElement('div');
-    el.className = 'particle';
-    el.style.cssText = `left:${p.x}%;top:${p.y}%;width:${p.size}px;height:${p.size}px;opacity:0.6;background:${Math.random() > 0.5 ? 'var(--gold-light)' : 'rgba(255,255,255,0.3)'}`;
-    oldParticles.appendChild(el);
-    p.el = el;
-    particles.push(p);
-  }
-
-  const canvas = document.createElement('canvas');
-  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
-  oldParticles.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-
-  const goldRgb = (getComputedStyle(document.documentElement).getPropertyValue('--gold-rgb').trim() || '249,218,47');
-
-  function resizeCanvas() {
-    canvas.width = oldParticles.offsetWidth;
-    canvas.height = oldParticles.offsetHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const w = canvas.width / 100, h = canvas.height / 100;
-
-    particles.forEach((p, i) => {
-      p.x += p.vx + mouse.x * 0.04;
-      p.y += p.vy + mouse.y * 0.04;
-      if (p.x <= 0) { p.x = 0; p.vx = Math.abs(p.vx); }
-      else if (p.x >= 100) { p.x = 100; p.vx = -Math.abs(p.vx); }
-      if (p.y <= 0) { p.y = 0; p.vy = Math.abs(p.vy); }
-      else if (p.y >= 100) { p.y = 100; p.vy = -Math.abs(p.vy); }
-      p.el.style.left = p.x + '%';
-      p.el.style.top = p.y + '%';
-
-      particles.forEach((p2, j) => {
-        if (j <= i) return;
-        const dx = (p.x - p2.x) * w, dy = (p.y - p2.y) * h;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(${goldRgb},${0.15 * (1 - dist / 150)})`;
-          ctx.lineWidth = 1;
-          ctx.moveTo(p.x * w, p.y * h);
-          ctx.lineTo(p2.x * w, p2.y * h);
-          ctx.stroke();
-        }
-      });
-    });
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-}
 
 // === MOUSE PARALLAX ON CARDS ===
 document.querySelectorAll('.feature-card').forEach(card => {
