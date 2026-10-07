@@ -2077,7 +2077,7 @@ ul { list-style: none; }
     border-top: 1px solid var(--border);
   }
   .event-title { font-size: 1.9rem; }
-  .event-gallery img { height: 200px; }
+  .event-gallery img { height: 200px; object-fit: cover; object-position: center; }
 }
 
 /* ===== RESPONSIVE ===== */
