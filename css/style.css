@@ -222,7 +222,7 @@ ul { list-style: none; }
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 .nav-list a {
@@ -231,13 +231,13 @@ ul { list-style: none; }
   justify-content: center;
   white-space: nowrap;
   line-height: 1.4;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border-radius: 10px;
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-gray);
   position: relative;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   transition: var(--transition-fast);
 }
 
@@ -2084,9 +2084,10 @@ ul { list-style: none; }
 /* Navigation à 8 entrées (Événements ajouté) : on resserre entre la bascule
    hamburger (1100px) et le grand écran pour éviter le débordement. */
 @media (min-width: 1101px) and (max-width: 1400px) {
-  .nav-list { gap: 2px; }
-  .nav-list a { padding: 10px 9px; font-size: 0.76rem; letter-spacing: 0.3px; }
-  .logo-text strong { font-size: 0.95rem; }
+  .nav-list { gap: 1px; }
+  .nav-list a { padding: 10px 8px; font-size: 0.72rem; letter-spacing: 0.2px; }
+  .logo-text strong { font-size: 0.9rem; }
+  .logo-img { height: 40px; }
 }
 @media (max-width: 1024px) {
   .hero { min-height: auto; padding: 120px 0 60px; background-position: 60% center; }

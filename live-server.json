@@ -1,0 +1,24 @@
+{
+  "port": 4000,
+  "root": ".",
+  "open": true,
+  "file": "international/index.html",
+  "middleware": [
+    {
+      "path": "/",
+      "handler": "rewrite",
+      "config": {
+        "rules": [
+          {
+            "from": "^/(international|haut-founty)/([a-z]+)$",
+            "to": "/$1/$2.html"
+          },
+          {
+            "from": "^/(about|contact|informations|faq|programs|evenements|inscription|index)$",
+            "to": "/international/$1.html"
+          }
+        ]
+      }
+    }
+  ]
+}
